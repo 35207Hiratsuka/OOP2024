@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace SalesCounter {
-    internal class Sale {
+    public class Sale {
         //店舗名
         public String ShopName { get; set; }
 
