@@ -5,22 +5,35 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+//P75の２．２．９の上の三つ　要復習
+
+
 namespace SalesCounter {
     public class SalesCounter {
-        private List<Sale> _sales;
+        private IEnumerable<Sale> _sales;
+
+
+
+
 
         //コンストラクタ
         public SalesCounter(string filePath) {
             _sales = ReadSales(filePath);
         }
 
+
+
+
+
+
+
         //売り上げデータを読み込み、Saleオブジェクトのリストを返す
-        static List<Sale> ReadSales(String filePath) {
-            List<Sale> sales = new List<Sale>();
-            String[] lines = File.ReadAllLines(filePath);
-            foreach(String line in lines) {
-                String[] items = line.Split(',');
-                Sale sale = new Sale {
+        private static IEnumerable<Sale> ReadSales(String filePath) {
+            var sales = new List<Sale>();
+            var lines = File.ReadAllLines(filePath);
+            foreach(var line in lines) {
+                var items = line.Split(',');
+                var sale = new Sale {
                     ShopName = items[0],
                     ProductCategory = items[1],
                     Amount = int.Parse(items[2])
@@ -32,13 +45,13 @@ namespace SalesCounter {
 
 
         //店舗別売上を求める
-        public Dictionary<string, int> GetPerStoreSales() {
-            Dictionary<string, int> dict = new Dictionary<string, int>();
-            foreach(Sale sale in _sales) {
-                if(dict.ContainsKey(sale.ProductCategory))
-                    dict[sale.ProductCategory] += sale.Amount;
+        public IDictionary<string, int> GetPerStoreSales() {
+            var dict = new SortedDictionary<string, int>();
+            foreach(var sale in _sales) {
+                if(dict.ContainsKey(sale.ShopName))
+                    dict[sale.ShopName] += sale.Amount;
                 else
-                    dict[sale.ProductCategory] = sale.Amount;
+                    dict[sale.ShopName] = sale.Amount;
             }
             return dict;
         }
