@@ -10,7 +10,7 @@
         /// </summary>
         /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
         protected override void Dispose(bool disposing) {
-            if (disposing && (components != null)) {
+            if(disposing && (components != null)) {
                 components.Dispose();
             }
             base.Dispose(disposing);
@@ -29,7 +29,7 @@
             // 
             // timer1
             // 
-            timer1.Interval = 10;
+            timer1.Interval = 3;
             timer1.Tick += timer1_Tick;
             // 
             // Form1
