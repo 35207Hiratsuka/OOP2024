@@ -7,14 +7,19 @@ using System.Threading.Tasks;
 namespace BallApp {
     internal class SoccerBall : Obj {
 
+        public static int count { get; set; }
         public SoccerBall(double xp, double yp)
             : base(xp, yp, @"Picture\soccer_ball.png") {
+            Random rand = new Random();
+            MoveX = rand.Next(-25, 25); //移動量設定
+            MoveY = rand.Next(-25, 25);
 
-            MoveX = 10; //移動量設定
-            MoveY = 10;
+            count++;
         }
 
         public override bool Move() {
+            
+
             if(PosX > 750 || PosX < 0) {
                 //移動量の符号を反転
             MoveX = -MoveX;

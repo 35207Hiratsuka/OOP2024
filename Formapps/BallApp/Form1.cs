@@ -15,6 +15,7 @@ namespace BallApp {
 
         //フォームが最初にロードされるとき一度だけ実行される
         private void Form1_Load(object sender, EventArgs e) {
+            this.Text = "BallApp SoccerBall=" + SoccerBall.count + " TennisBall=" + tennisBall.count;
         }
 
         private void timer1_Tick(object sender, EventArgs e) {
@@ -35,10 +36,13 @@ namespace BallApp {
 
             PictureBox pb = new PictureBox();   //画像を表示するコントロール
             Obj ball = null;
+            
+            
 
             if(e.Button == MouseButtons.Left) {
                 pb.Size = new Size(50, 50);
                 ball = new SoccerBall(e.X - 25, e.Y - 25);
+                
 
             } else if(e.Button == MouseButtons.Right) {
                 pb.Size = new Size(25, 25);
@@ -53,6 +57,8 @@ namespace BallApp {
 
             balls.Add(ball);
             pbs.Add(pb);
+
+            this.Text = "BallApp SoccerBall=" + SoccerBall.count + " TennisBall=" + tennisBall.count;
         }
     }
 }
