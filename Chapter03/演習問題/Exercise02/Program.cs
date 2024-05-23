@@ -45,12 +45,24 @@ namespace Exercise02 {
         }
         
         private static void Exercise2_2(List<string> names) {
+             var count = names.Count(s => s.Contains("o"));
+            Console.WriteLine(count);
+
         }
         
         private static void Exercise2_3(List<string> names) {
+            var where = names.Where(s => s.Contains("o"));
+            foreach(string s in where)
+                Console.WriteLine(s);
+
         }
         
         private static void Exercise2_4(List<string> names) {
+
+            var select = names.Where(s => s.StartsWith("B")).Select(s => new { s.Length, s });
+            foreach(var obj in select) {
+            Console.WriteLine(obj.s + "." + obj.Length);
+            }
         }
 
     }
