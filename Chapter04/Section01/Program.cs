@@ -34,12 +34,21 @@ namespace Section01 {
             Console.WriteLine("整数を入力");
             string inputNum = Console.ReadLine();
 
-            int height;
-            if(int.TryParse(inputNum, out height)) {
-                int num = int.Parse(inputNum);
-                Console.WriteLine("整数に変換した値：" + num);
-            } else {
-                Console.WriteLine("変換失敗");
+            try {
+            int num = int.Parse(inputNum);
+           }
+            catch(FormatException ex){
+                Console.WriteLine("FormatException" + ex.Message);
+            }
+            catch (ArgumentException ex) { 
+                Console.WriteLine("ArgumentException" + ex.Message);
+            }
+
+            catch (OverflowException ex) {
+                Console.WriteLine("OverflowException" + ex.Message);
+            }
+            finally {
+                Console.WriteLine("処理が終了しました");
             }
 
         }
