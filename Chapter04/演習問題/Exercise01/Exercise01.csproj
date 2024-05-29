@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{8BCF3FA6-C5F5-4CD6-9E1E-9659C9E318C1}</ProjectGuid>
+    <ProjectGuid>{DFF8EE0F-BE65-412D-8746-2E38B1E8ED8B}</ProjectGuid>
     <OutputType>Library</OutputType>
     <RootNamespace>Exercise01</RootNamespace>
     <AssemblyName>Exercise01</AssemblyName>
@@ -48,6 +48,7 @@
   <ItemGroup>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="YearMonth.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
