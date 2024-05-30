@@ -9,9 +9,12 @@ namespace Exercise02 {
         static void Main(string[] args) {
             Console.WriteLine("数値を入力");
             var Snum = Console.ReadLine();
-            int num = int.Parse(Snum);
-            var Knum = num.ToString("#,0");
+            int num;
+            if(int.TryParse(Snum, out num)) {
+                var Knum = num.ToString("#,0");
             Console.WriteLine(Knum);
+            }
+            
         }
     }
 }

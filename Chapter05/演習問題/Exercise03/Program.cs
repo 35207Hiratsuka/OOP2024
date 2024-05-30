@@ -28,15 +28,18 @@ namespace Exercise03 {
         
 
         private static void Exercise3_1(string text) {
-
+            var count = text.Count(c => c == ' ');
+            Console.WriteLine("文字数：" + count);
         }
 
         private static void Exercise3_2(string text) {
-
+            var replace = text.Replace("big","small");
+            Console.WriteLine(replace);
         }
 
         private static void Exercise3_3(string text) {
-
+            String[] words = text.Split();
+            Console.WriteLine("単語数：" + words.Length);
         }
 
         private static void Exercise3_4(string text) {
