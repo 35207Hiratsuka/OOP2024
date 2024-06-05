@@ -23,9 +23,12 @@ namespace Exercise03 {
             Console.WriteLine("-----");
 
             Exercise3_5(text);
+            Console.WriteLine("-----");
+
+            Exercise3_6(text);
         }
 
-        
+
 
         private static void Exercise3_1(string text) {
             var count = text.Count(c => c == ' ');
@@ -33,7 +36,7 @@ namespace Exercise03 {
         }
 
         private static void Exercise3_2(string text) {
-            var replace = text.Replace("big","small");
+            var replace = text.Replace("big", "small");
             Console.WriteLine(replace);
         }
 
@@ -43,11 +46,29 @@ namespace Exercise03 {
         }
 
         private static void Exercise3_4(string text) {
-
+            String[] words = text.Split();
+            var array = words.Where(w => w.Length <= 4).ToArray();
+            foreach(var tango in array) {
+                Console.WriteLine(tango);
+            }
         }
 
         private static void Exercise3_5(string text) {
-
+            String[] words = text.Split();
+            var sb = new StringBuilder();
+            foreach(var w in words) {
+                sb.Append(w);
+                sb.Append(' ');
+            }
+            var longtext = sb.ToString();
+            Console.WriteLine(longtext);
         }
+
+        private static void Exercise3_6(string text) {
+            var array = text.Split(new[] { ' ', ',', '-', '_' }).ToArray();
+            foreach(var tango in array) {
+                Console.WriteLine(tango);
+            }
+        }   
     }
 }
