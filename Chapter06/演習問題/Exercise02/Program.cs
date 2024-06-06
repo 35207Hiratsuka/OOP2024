@@ -6,9 +6,15 @@ using System.Threading.Tasks;
 
 namespace Exercise02 {
     class Book {
-        public string Title { get; set; }
-        public int Price { get; set; }
-        public int Pages { get; set; }
+        public string Title {
+            get; set;
+        }
+        public int Price {
+            get; set;
+        }
+        public int Pages {
+            get; set;
+        }
     }
 
 
@@ -48,31 +54,50 @@ namespace Exercise02 {
         }
 
         private static void Exercise2_1(List<Book> books) {
-
+            var wonderful = books.Where(b => b.Title == "ワンダフル・C#ライフ");
+            foreach(var wond in wonderful) {
+                Console.WriteLine("価格：" + wond.Price + "　　ページ数：" + wond.Pages);
+            }
         }
 
         private static void Exercise2_2(List<Book> books) {
-
+            var count = books.Count(b => b.Title.Contains("C#"));
+            Console.WriteLine(count);
         }
 
         private static void Exercise2_3(List<Book> books) {
-
+            var average = books.Where(b => b.Title.Contains("C#"))
+                               .Average(b => b.Pages);
+            Console.WriteLine(average);
         }
 
         private static void Exercise2_4(List<Book> books) {
-
+            var book = books.FirstOrDefault(b => b.Price >= 4000);
+            if(book != null) {
+                Console.WriteLine(book.Title);
+            }
         }
 
         private static void Exercise2_5(List<Book> books) {
-
+            var pages = books.Where(b => b.Price < 4000)
+                             .Max(b => b.Pages);
+            Console.WriteLine(pages);
         }
 
         private static void Exercise2_6(List<Book> books) {
-
+            var book = books.Where(b => b.Pages >= 400)
+                            .OrderByDescending(b => b.Price);
+            foreach(var fbook in book) {
+                Console.WriteLine(fbook.Title + "," + fbook.Price + "円");
+            }
         }
 
         private static void Exercise2_7(List<Book> books) {
-
+            var book = books.Where(b => b.Title.Contains("C#"))
+                            .Where(b => b.Pages <= 500); 
+            foreach(var cbook in book) {
+                Console.WriteLine(cbook.Title);
+            }
         }
     }
 }
