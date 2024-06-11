@@ -43,22 +43,23 @@ namespace Section01 {
                     location.Add(key, value);
                 }
             }
+            
+            
+            Boolean endFlag = true;
         
 
-            do {
+            while(endFlag){
 
-                Console.WriteLine("＊メニュー＊");
-                Console.WriteLine("１：一覧表示");
-                Console.WriteLine("２：検索");
-                Console.WriteLine("３：終了");
-
-                int choice = int.Parse(Console.ReadLine());
+                
+                switch(choicedesc()) {
+               
                 //1
-                if(choice == 1) {
+                case 1:
                     foreach(var PLocation in location)
                         Console.WriteLine(PLocation.Key + "の県庁所在地は" + PLocation.Value + "です。");
+                    break;
                 //2
-                } else if(choice == 2) {
+                case 2:
                     int ch = location.Count;
                     Console.Write("都道府県：");
                     var todo = Console.ReadLine();
@@ -72,10 +73,25 @@ namespace Section01 {
                             Console.WriteLine("該当する都道府県が見つかりません");
                         }
                     }
+                    break;
                 //3
-                } else { break; }
+                case 3:
+                    endFlag = false;
+                    break;  
+                }
 
-            } while(true);
+            } 
+        }
+
+
+        private static int choicedesc() {
+            Console.WriteLine("＊メニュー＊");
+            Console.WriteLine("１：一覧表示");
+            Console.WriteLine("２：検索");
+            Console.WriteLine("３：終了");
+
+            int choice = int.Parse(Console.ReadLine());
+            return choice;
         }
     }
 }
