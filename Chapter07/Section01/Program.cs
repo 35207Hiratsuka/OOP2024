@@ -33,7 +33,7 @@ namespace Section01 {
 
                 if(location.ContainsKey(key)) {
                     Console.WriteLine(key + "は既に存在します。上書きしますか？");
-                    Console.WriteLine("Y or N  >");
+                    Console.Write("Y or N  >");
                     if(Console.ReadLine() == "Y") {
                         location[key] = value;
                     } else {
@@ -54,12 +54,12 @@ namespace Section01 {
                 switch(choicedesc()) {
                
                 //1
-                case 1:
+                case "1":
                     foreach(var PLocation in location)
                         Console.WriteLine(PLocation.Key + "の県庁所在地は" + PLocation.Value + "です。");
                     break;
                 //2
-                case 2:
+                case "2":
                     int ch = location.Count;
                     Console.Write("都道府県：");
                     var todo = Console.ReadLine();
@@ -75,7 +75,7 @@ namespace Section01 {
                     }
                     break;
                 //3
-                case 3:
+                case "3":
                     endFlag = false;
                     break;  
                 }
@@ -84,13 +84,13 @@ namespace Section01 {
         }
 
 
-        private static int choicedesc() {
+        private static String choicedesc() {
             Console.WriteLine("＊メニュー＊");
             Console.WriteLine("１：一覧表示");
             Console.WriteLine("２：検索");
             Console.WriteLine("３：終了");
 
-            int choice = int.Parse(Console.ReadLine());
+            String choice = Console.ReadLine();
             return choice;
         }
     }
