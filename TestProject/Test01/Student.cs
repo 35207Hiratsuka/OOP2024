@@ -9,7 +9,7 @@ namespace Test01 {
         public String Subject { get; set; }
 
         //点数
-        public int Amount { get; set; }
+        public int Score { get; set; }
 
 
 
