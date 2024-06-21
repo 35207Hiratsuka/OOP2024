@@ -27,11 +27,12 @@ namespace Section04 {
 
             if(abbrs.Remove("NPT"))
                 Console.WriteLine(abbrs.Count);
-            else Console.WriteLine("削除できません");
+            else
+                Console.WriteLine("削除できません");
 
             //7.2.4
-            foreach(var abbr in abbrs.Where(x => x.Key.Length == 3)) {
-            Console.WriteLine("{0},{1}",abbr.Key,abbr.Value);
+            //foreach(var abbr in abbrs.Where(x => x.Key.Length == 3)) {
+            //   Console.WriteLine("{0},{1}", abbr.Key, abbr.Value);
 
 
             // インデクサの利用例
@@ -63,3 +64,5 @@ namespace Section04 {
         }
     }
 }
+
+
