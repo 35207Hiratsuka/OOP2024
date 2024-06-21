@@ -23,8 +23,12 @@ namespace Section01 {
             cul.DateTimeFormat.Calendar = new JapaneseCalendar();
 
             Console.WriteLine();
-            Console.WriteLine("あなたは" + cul.DateTimeFormat.GetShortestDayName(birthday.DayOfWeek) + "曜日生まれです");
+            Console.WriteLine("あなたは、" + birthday.ToString("ggyy年M月d日",cul) +
+                cul.DateTimeFormat.GetShortestDayName(birthday.DayOfWeek) + "曜日に生まれました");
 
+            TimeSpan span = DateTime.Today - birthday;   
+
+            Console.WriteLine("あなたは、生まれてから" + span.Days + "日です");
         }
     }
 }
