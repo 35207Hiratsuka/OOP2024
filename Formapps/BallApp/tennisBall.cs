@@ -5,6 +5,14 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
+//private void textBox1_TextChanged(object sender, EventArgs e) {
+
+        //}
+
+        //private void button1_Click(object sender, EventArgs e) {
+
+//}
+
 namespace BallApp {
     internal class TennisBall : Obj {
         Random random = new Random();   //乱数インスタンス
