@@ -25,6 +25,8 @@
         private void InitializeComponent() {
             btEx8_1 = new Button();
             tbDisp = new TextBox();
+            btEx8_2 = new Button();
+            btEx8_3 = new Button();
             SuspendLayout();
             // 
             // btEx8_1
@@ -40,17 +42,41 @@
             // 
             // tbDisp
             // 
-            tbDisp.Location = new Point(36, 92);
+            tbDisp.Location = new Point(36, 204);
             tbDisp.Multiline = true;
             tbDisp.Name = "tbDisp";
             tbDisp.Size = new Size(329, 110);
             tbDisp.TabIndex = 1;
+            // 
+            // btEx8_2
+            // 
+            btEx8_2.Font = new Font("Yu Gothic UI", 18F, FontStyle.Regular, GraphicsUnit.Point, 128);
+            btEx8_2.Location = new Point(226, 25);
+            btEx8_2.Name = "btEx8_2";
+            btEx8_2.Size = new Size(139, 50);
+            btEx8_2.TabIndex = 2;
+            btEx8_2.Text = "問題8.2";
+            btEx8_2.UseVisualStyleBackColor = true;
+            btEx8_2.Click += btEx8_2_Click;
+            // 
+            // btEx8_3
+            // 
+            btEx8_3.Font = new Font("Yu Gothic UI", 18F, FontStyle.Regular, GraphicsUnit.Point, 128);
+            btEx8_3.Location = new Point(115, 125);
+            btEx8_3.Name = "btEx8_3";
+            btEx8_3.Size = new Size(160, 61);
+            btEx8_3.TabIndex = 3;
+            btEx8_3.Text = "問題8.3";
+            btEx8_3.UseVisualStyleBackColor = true;
+            btEx8_3.Click += btEx8_3_Click;
             // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(409, 385);
+            Controls.Add(btEx8_3);
+            Controls.Add(btEx8_2);
             Controls.Add(tbDisp);
             Controls.Add(btEx8_1);
             Name = "Form1";
@@ -63,5 +89,7 @@
 
         private Button btEx8_1;
         private TextBox tbDisp;
+        private Button btEx8_2;
+        private Button btEx8_3;
     }
 }
