@@ -10,7 +10,7 @@
         /// </summary>
         /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
         protected override void Dispose(bool disposing) {
-            if(disposing && (components != null)) {
+            if (disposing && (components != null)) {
                 components.Dispose();
             }
             base.Dispose(disposing);
@@ -23,118 +23,187 @@
         ///  the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent() {
-            dtpDate = new DateTimePicker();
             label1 = new Label();
-            comboBox1 = new ComboBox();
+            dtpDate = new DateTimePicker();
             label2 = new Label();
+            cbAuther = new ComboBox();
             label3 = new Label();
             label4 = new Label();
             label5 = new Label();
+            cbCarName = new ComboBox();
             groupBox1 = new GroupBox();
+            rbOther = new RadioButton();
+            rbImport = new RadioButton();
+            rbSubaru = new RadioButton();
+            rbHonda = new RadioButton();
+            rbNissan = new RadioButton();
             rbToyota = new RadioButton();
-            radioButton2 = new RadioButton();
-            comboBox2 = new ComboBox();
-            textBox1 = new TextBox();
+            tbReport = new TextBox();
             label6 = new Label();
-            button1 = new Button();
-            button2 = new Button();
+            btPicOpen = new Button();
+            btPicDelete = new Button();
             pbPicture = new PictureBox();
-            button3 = new Button();
-            button4 = new Button();
-            button5 = new Button();
-            dataGridView1 = new DataGridView();
+            btAddReport = new Button();
+            btModifyReport = new Button();
+            btDeleteReport = new Button();
             label7 = new Label();
-            button6 = new Button();
-            button7 = new Button();
-            radioButton3 = new RadioButton();
-            radioButton4 = new RadioButton();
-            radioButton5 = new RadioButton();
-            radioButton6 = new RadioButton();
+            dgvCarReport = new DataGridView();
+            btReportSave = new Button();
+            btReportOpen = new Button();
             groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pbPicture).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)dgvCarReport).BeginInit();
             SuspendLayout();
-            // 
-            // dtpDate
-            // 
-            dtpDate.Font = new Font("Yu Gothic UI", 18F, FontStyle.Regular, GraphicsUnit.Point, 128);
-            dtpDate.Location = new Point(94, 27);
-            dtpDate.Name = "dtpDate";
-            dtpDate.Size = new Size(198, 39);
-            dtpDate.TabIndex = 2;
             // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.Font = new Font("Yu Gothic UI", 18F, FontStyle.Regular, GraphicsUnit.Point, 128);
-            label1.Location = new Point(12, 32);
+            label1.Font = new Font("Yu Gothic UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 128);
+            label1.Location = new Point(41, 22);
             label1.Name = "label1";
-            label1.Size = new Size(62, 32);
-            label1.TabIndex = 3;
+            label1.Size = new Size(50, 25);
+            label1.TabIndex = 0;
             label1.Text = "日付";
             // 
-            // comboBox1
+            // dtpDate
             // 
-            comboBox1.FormattingEnabled = true;
-            comboBox1.Location = new Point(94, 84);
-            comboBox1.Name = "comboBox1";
-            comboBox1.Size = new Size(121, 23);
-            comboBox1.TabIndex = 4;
+            dtpDate.Font = new Font("Yu Gothic UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 128);
+            dtpDate.Location = new Point(101, 16);
+            dtpDate.Name = "dtpDate";
+            dtpDate.Size = new Size(198, 33);
+            dtpDate.TabIndex = 1;
             // 
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(33, 87);
+            label2.Font = new Font("Yu Gothic UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 128);
+            label2.Location = new Point(22, 74);
             label2.Name = "label2";
-            label2.Size = new Size(43, 15);
-            label2.TabIndex = 5;
+            label2.Size = new Size(69, 25);
+            label2.TabIndex = 0;
             label2.Text = "記録者";
+            // 
+            // cbAuther
+            // 
+            cbAuther.Font = new Font("Yu Gothic UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 128);
+            cbAuther.FormattingEnabled = true;
+            cbAuther.Location = new Point(101, 71);
+            cbAuther.Name = "cbAuther";
+            cbAuther.Size = new Size(302, 33);
+            cbAuther.TabIndex = 2;
             // 
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(33, 134);
+            label3.Font = new Font("Yu Gothic UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 128);
+            label3.Location = new Point(28, 120);
             label3.Name = "label3";
-            label3.Size = new Size(40, 15);
-            label3.TabIndex = 6;
+            label3.Size = new Size(63, 25);
+            label3.TabIndex = 0;
             label3.Text = "メーカー";
             // 
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(33, 173);
+            label4.Font = new Font("Yu Gothic UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 128);
+            label4.Location = new Point(41, 173);
             label4.Name = "label4";
-            label4.Size = new Size(31, 15);
-            label4.TabIndex = 7;
+            label4.Size = new Size(50, 25);
+            label4.TabIndex = 0;
             label4.Text = "車名";
             // 
             // label5
             // 
             label5.AutoSize = true;
-            label5.Location = new Point(33, 213);
+            label5.Font = new Font("Yu Gothic UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 128);
+            label5.Location = new Point(24, 218);
             label5.Name = "label5";
-            label5.Size = new Size(42, 15);
-            label5.TabIndex = 8;
+            label5.Size = new Size(67, 25);
+            label5.TabIndex = 0;
             label5.Text = "レポート";
+            // 
+            // cbCarName
+            // 
+            cbCarName.Font = new Font("Yu Gothic UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 128);
+            cbCarName.FormattingEnabled = true;
+            cbCarName.Location = new Point(101, 170);
+            cbCarName.Name = "cbCarName";
+            cbCarName.Size = new Size(302, 33);
+            cbCarName.TabIndex = 2;
             // 
             // groupBox1
             // 
-            groupBox1.Controls.Add(radioButton6);
-            groupBox1.Controls.Add(radioButton5);
-            groupBox1.Controls.Add(radioButton4);
-            groupBox1.Controls.Add(radioButton3);
-            groupBox1.Controls.Add(radioButton2);
+            groupBox1.Controls.Add(rbOther);
+            groupBox1.Controls.Add(rbImport);
+            groupBox1.Controls.Add(rbSubaru);
+            groupBox1.Controls.Add(rbHonda);
+            groupBox1.Controls.Add(rbNissan);
             groupBox1.Controls.Add(rbToyota);
-            groupBox1.Location = new Point(94, 113);
+            groupBox1.Location = new Point(102, 113);
             groupBox1.Name = "groupBox1";
-            groupBox1.Size = new Size(370, 48);
-            groupBox1.TabIndex = 9;
+            groupBox1.Size = new Size(375, 38);
+            groupBox1.TabIndex = 3;
             groupBox1.TabStop = false;
+            // 
+            // rbOther
+            // 
+            rbOther.AutoSize = true;
+            rbOther.Location = new Point(307, 15);
+            rbOther.Name = "rbOther";
+            rbOther.Size = new Size(56, 19);
+            rbOther.TabIndex = 0;
+            rbOther.TabStop = true;
+            rbOther.Text = "その他";
+            rbOther.UseVisualStyleBackColor = true;
+            // 
+            // rbImport
+            // 
+            rbImport.AutoSize = true;
+            rbImport.Location = new Point(240, 15);
+            rbImport.Name = "rbImport";
+            rbImport.Size = new Size(61, 19);
+            rbImport.TabIndex = 0;
+            rbImport.TabStop = true;
+            rbImport.Text = "輸入車";
+            rbImport.UseVisualStyleBackColor = true;
+            // 
+            // rbSubaru
+            // 
+            rbSubaru.AutoSize = true;
+            rbSubaru.Location = new Point(180, 15);
+            rbSubaru.Name = "rbSubaru";
+            rbSubaru.Size = new Size(54, 19);
+            rbSubaru.TabIndex = 0;
+            rbSubaru.TabStop = true;
+            rbSubaru.Text = "スバル";
+            rbSubaru.UseVisualStyleBackColor = true;
+            // 
+            // rbHonda
+            // 
+            rbHonda.AutoSize = true;
+            rbHonda.Location = new Point(121, 15);
+            rbHonda.Name = "rbHonda";
+            rbHonda.Size = new Size(53, 19);
+            rbHonda.TabIndex = 0;
+            rbHonda.TabStop = true;
+            rbHonda.Text = "ホンダ";
+            rbHonda.UseVisualStyleBackColor = true;
+            // 
+            // rbNissan
+            // 
+            rbNissan.AutoSize = true;
+            rbNissan.Location = new Point(66, 15);
+            rbNissan.Name = "rbNissan";
+            rbNissan.Size = new Size(49, 19);
+            rbNissan.TabIndex = 0;
+            rbNissan.TabStop = true;
+            rbNissan.Text = "日産";
+            rbNissan.UseVisualStyleBackColor = true;
             // 
             // rbToyota
             // 
             rbToyota.AutoSize = true;
-            rbToyota.Location = new Point(9, 22);
+            rbToyota.Location = new Point(10, 15);
             rbToyota.Name = "rbToyota";
             rbToyota.Size = new Size(50, 19);
             rbToyota.TabIndex = 0;
@@ -142,240 +211,187 @@
             rbToyota.Text = "トヨタ";
             rbToyota.UseVisualStyleBackColor = true;
             // 
-            // radioButton2
+            // tbReport
             // 
-            radioButton2.AutoSize = true;
-            radioButton2.Location = new Point(65, 22);
-            radioButton2.Name = "radioButton2";
-            radioButton2.Size = new Size(49, 19);
-            radioButton2.TabIndex = 1;
-            radioButton2.TabStop = true;
-            radioButton2.Text = "日産";
-            radioButton2.UseVisualStyleBackColor = true;
-            // 
-            // comboBox2
-            // 
-            comboBox2.FormattingEnabled = true;
-            comboBox2.Location = new Point(94, 173);
-            comboBox2.Name = "comboBox2";
-            comboBox2.Size = new Size(121, 23);
-            comboBox2.TabIndex = 10;
-            // 
-            // textBox1
-            // 
-            textBox1.Font = new Font("Yu Gothic UI", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 128);
-            textBox1.Location = new Point(94, 213);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(370, 35);
-            textBox1.TabIndex = 11;
+            tbReport.Location = new Point(101, 218);
+            tbReport.Multiline = true;
+            tbReport.Name = "tbReport";
+            tbReport.Size = new Size(376, 93);
+            tbReport.TabIndex = 4;
             // 
             // label6
             // 
             label6.AutoSize = true;
-            label6.Font = new Font("Yu Gothic UI", 18F, FontStyle.Regular, GraphicsUnit.Point, 128);
-            label6.Location = new Point(537, 55);
+            label6.Font = new Font("Yu Gothic UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 128);
+            label6.Location = new Point(512, 29);
             label6.Name = "label6";
-            label6.Size = new Size(62, 32);
-            label6.TabIndex = 12;
+            label6.Size = new Size(50, 25);
+            label6.TabIndex = 0;
             label6.Text = "画像";
             // 
-            // button1
+            // btPicOpen
             // 
-            button1.Location = new Point(615, 64);
-            button1.Name = "button1";
-            button1.Size = new Size(75, 23);
-            button1.TabIndex = 13;
-            button1.Text = "開く…";
-            button1.UseVisualStyleBackColor = true;
+            btPicOpen.Location = new Point(607, 29);
+            btPicOpen.Name = "btPicOpen";
+            btPicOpen.Size = new Size(75, 23);
+            btPicOpen.TabIndex = 5;
+            btPicOpen.Text = "開く...";
+            btPicOpen.UseVisualStyleBackColor = true;
             // 
-            // button2
+            // btPicDelete
             // 
-            button2.Location = new Point(705, 64);
-            button2.Name = "button2";
-            button2.Size = new Size(75, 23);
-            button2.TabIndex = 14;
-            button2.Text = "削除";
-            button2.UseVisualStyleBackColor = true;
+            btPicDelete.Location = new Point(688, 29);
+            btPicDelete.Name = "btPicDelete";
+            btPicDelete.Size = new Size(75, 23);
+            btPicDelete.TabIndex = 5;
+            btPicDelete.Text = "削除";
+            btPicDelete.UseVisualStyleBackColor = true;
             // 
             // pbPicture
             // 
-            pbPicture.BackColor = Color.White;
-            pbPicture.Location = new Point(537, 102);
+            pbPicture.BackColor = SystemColors.ActiveCaption;
+            pbPicture.Location = new Point(512, 57);
             pbPicture.Name = "pbPicture";
-            pbPicture.Size = new Size(265, 205);
-            pbPicture.TabIndex = 15;
+            pbPicture.Size = new Size(251, 206);
+            pbPicture.TabIndex = 6;
             pbPicture.TabStop = false;
             // 
-            // button3
+            // btAddReport
             // 
-            button3.Location = new Point(537, 329);
-            button3.Name = "button3";
-            button3.Size = new Size(75, 23);
-            button3.TabIndex = 16;
-            button3.Text = "追加";
-            button3.UseVisualStyleBackColor = true;
+            btAddReport.Font = new Font("Yu Gothic UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 128);
+            btAddReport.Location = new Point(512, 274);
+            btAddReport.Name = "btAddReport";
+            btAddReport.Size = new Size(75, 37);
+            btAddReport.TabIndex = 5;
+            btAddReport.Text = "追加";
+            btAddReport.UseVisualStyleBackColor = true;
+            btAddReport.Click += btAddReport_Click;
             // 
-            // button4
+            // btModifyReport
             // 
-            button4.Location = new Point(632, 329);
-            button4.Name = "button4";
-            button4.Size = new Size(75, 23);
-            button4.TabIndex = 17;
-            button4.Text = "修正";
-            button4.UseVisualStyleBackColor = true;
+            btModifyReport.Font = new Font("Yu Gothic UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 128);
+            btModifyReport.Location = new Point(600, 274);
+            btModifyReport.Name = "btModifyReport";
+            btModifyReport.Size = new Size(75, 37);
+            btModifyReport.TabIndex = 5;
+            btModifyReport.Text = "修正";
+            btModifyReport.UseVisualStyleBackColor = true;
             // 
-            // button5
+            // btDeleteReport
             // 
-            button5.Location = new Point(727, 329);
-            button5.Name = "button5";
-            button5.Size = new Size(75, 23);
-            button5.TabIndex = 18;
-            button5.Text = "削除";
-            button5.UseVisualStyleBackColor = true;
-            // 
-            // dataGridView1
-            // 
-            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Location = new Point(100, 373);
-            dataGridView1.Name = "dataGridView1";
-            dataGridView1.Size = new Size(702, 206);
-            dataGridView1.TabIndex = 19;
+            btDeleteReport.Font = new Font("Yu Gothic UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 128);
+            btDeleteReport.Location = new Point(688, 274);
+            btDeleteReport.Name = "btDeleteReport";
+            btDeleteReport.Size = new Size(75, 37);
+            btDeleteReport.TabIndex = 5;
+            btDeleteReport.Text = "削除";
+            btDeleteReport.UseVisualStyleBackColor = true;
             // 
             // label7
             // 
             label7.AutoSize = true;
-            label7.Location = new Point(33, 373);
+            label7.Font = new Font("Yu Gothic UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 128);
+            label7.Location = new Point(41, 329);
             label7.Name = "label7";
-            label7.Size = new Size(31, 15);
-            label7.TabIndex = 20;
+            label7.Size = new Size(50, 25);
+            label7.TabIndex = 0;
             label7.Text = "一覧";
             // 
-            // button6
+            // dgvCarReport
             // 
-            button6.Location = new Point(19, 495);
-            button6.Name = "button6";
-            button6.Size = new Size(75, 23);
-            button6.TabIndex = 21;
-            button6.Text = "開く…";
-            button6.UseVisualStyleBackColor = true;
+            dgvCarReport.AllowUserToAddRows = false;
+            dgvCarReport.AllowUserToDeleteRows = false;
+            dgvCarReport.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvCarReport.Location = new Point(101, 329);
+            dgvCarReport.Name = "dgvCarReport";
+            dgvCarReport.ReadOnly = true;
+            dgvCarReport.Size = new Size(666, 150);
+            dgvCarReport.TabIndex = 7;
             // 
-            // button7
+            // btReportSave
             // 
-            button7.Location = new Point(19, 539);
-            button7.Name = "button7";
-            button7.Size = new Size(75, 23);
-            button7.TabIndex = 22;
-            button7.Text = "保存…";
-            button7.UseVisualStyleBackColor = true;
+            btReportSave.Font = new Font("Yu Gothic UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 128);
+            btReportSave.Location = new Point(12, 442);
+            btReportSave.Name = "btReportSave";
+            btReportSave.Size = new Size(75, 37);
+            btReportSave.TabIndex = 5;
+            btReportSave.Text = "保存...";
+            btReportSave.UseVisualStyleBackColor = true;
             // 
-            // radioButton3
+            // btReportOpen
             // 
-            radioButton3.AutoSize = true;
-            radioButton3.Location = new Point(121, 22);
-            radioButton3.Name = "radioButton3";
-            radioButton3.Size = new Size(53, 19);
-            radioButton3.TabIndex = 2;
-            radioButton3.TabStop = true;
-            radioButton3.Text = "ホンダ";
-            radioButton3.UseVisualStyleBackColor = true;
-            // 
-            // radioButton4
-            // 
-            radioButton4.AutoSize = true;
-            radioButton4.Location = new Point(180, 22);
-            radioButton4.Name = "radioButton4";
-            radioButton4.Size = new Size(54, 19);
-            radioButton4.TabIndex = 3;
-            radioButton4.TabStop = true;
-            radioButton4.Text = "スバル";
-            radioButton4.UseVisualStyleBackColor = true;
-            // 
-            // radioButton5
-            // 
-            radioButton5.AutoSize = true;
-            radioButton5.Location = new Point(240, 22);
-            radioButton5.Name = "radioButton5";
-            radioButton5.Size = new Size(61, 19);
-            radioButton5.TabIndex = 4;
-            radioButton5.TabStop = true;
-            radioButton5.Text = "輸入車";
-            radioButton5.UseVisualStyleBackColor = true;
-            // 
-            // radioButton6
-            // 
-            radioButton6.AutoSize = true;
-            radioButton6.Location = new Point(307, 22);
-            radioButton6.Name = "radioButton6";
-            radioButton6.Size = new Size(56, 19);
-            radioButton6.TabIndex = 5;
-            radioButton6.TabStop = true;
-            radioButton6.Text = "その他";
-            radioButton6.UseVisualStyleBackColor = true;
+            btReportOpen.Font = new Font("Yu Gothic UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 128);
+            btReportOpen.Location = new Point(12, 395);
+            btReportOpen.Name = "btReportOpen";
+            btReportOpen.Size = new Size(75, 37);
+            btReportOpen.TabIndex = 5;
+            btReportOpen.Text = "開く...";
+            btReportOpen.UseVisualStyleBackColor = true;
             // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(948, 660);
-            Controls.Add(button7);
-            Controls.Add(button6);
-            Controls.Add(label7);
-            Controls.Add(dataGridView1);
-            Controls.Add(button5);
-            Controls.Add(button4);
-            Controls.Add(button3);
+            ClientSize = new Size(780, 491);
+            Controls.Add(dgvCarReport);
             Controls.Add(pbPicture);
-            Controls.Add(button2);
-            Controls.Add(button1);
-            Controls.Add(label6);
-            Controls.Add(textBox1);
-            Controls.Add(comboBox2);
+            Controls.Add(btPicDelete);
+            Controls.Add(btDeleteReport);
+            Controls.Add(btModifyReport);
+            Controls.Add(btReportOpen);
+            Controls.Add(btReportSave);
+            Controls.Add(btAddReport);
+            Controls.Add(btPicOpen);
+            Controls.Add(tbReport);
             Controls.Add(groupBox1);
+            Controls.Add(cbCarName);
+            Controls.Add(cbAuther);
+            Controls.Add(dtpDate);
+            Controls.Add(label6);
+            Controls.Add(label7);
             Controls.Add(label5);
             Controls.Add(label4);
             Controls.Add(label3);
             Controls.Add(label2);
-            Controls.Add(comboBox1);
             Controls.Add(label1);
-            Controls.Add(dtpDate);
             Name = "Form1";
-            Text = "Form1";
+            Text = "試乗レポート管理システム";
             groupBox1.ResumeLayout(false);
             groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pbPicture).EndInit();
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dgvCarReport).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
 
         #endregion
 
-        private DateTimePicker dtpDate;
         private Label label1;
-        private ComboBox comboBox1;
+        private DateTimePicker dtpDate;
         private Label label2;
+        private ComboBox cbAuther;
         private Label label3;
         private Label label4;
         private Label label5;
+        private ComboBox cbCarName;
         private GroupBox groupBox1;
-        private RadioButton radioButton2;
+        private RadioButton rbOther;
+        private RadioButton rbImport;
+        private RadioButton rbSubaru;
+        private RadioButton rbHonda;
+        private RadioButton rbNissan;
         private RadioButton rbToyota;
-        private ComboBox comboBox2;
-        private TextBox textBox1;
+        private TextBox tbReport;
         private Label label6;
-        private Button button1;
-        private Button button2;
+        private Button btPicOpen;
+        private Button btPicDelete;
         private PictureBox pbPicture;
-        private Button button3;
-        private Button button4;
-        private Button button5;
-        private DataGridView dataGridView1;
+        private Button btAddReport;
+        private Button btModifyReport;
+        private Button btDeleteReport;
         private Label label7;
-        private Button button6;
-        private Button button7;
-        private RadioButton radioButton6;
-        private RadioButton radioButton5;
-        private RadioButton radioButton4;
-        private RadioButton radioButton3;
+        private DataGridView dgvCarReport;
+        private Button btReportSave;
+        private Button btReportOpen;
     }
 }
