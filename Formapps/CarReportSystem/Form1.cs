@@ -101,8 +101,19 @@ namespace CarReportSystem {
         }
 
         private void btModifyReport_Click(object sender, EventArgs e) {
+            listCarReports.RemoveAt(dgvCarReport.CurrentRow.Index);
 
-            
+            CarReport ModifyCarReport = new CarReport {
+                Date = dtpDate.Value,
+                Author = cbAuthor.Text,
+                Maker = GetRadioButtonMaker(),
+                CarName = cbCarName.Text,
+                Report = tbReport.Text,
+                Picture = pbPicture.Image,
+            };
+            listCarReports.Add(ModifyCarReport);
+
+
             dgvCarReport.Refresh();//データグリッドビューの更新
         }
     }
