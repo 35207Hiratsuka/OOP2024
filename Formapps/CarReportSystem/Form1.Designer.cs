@@ -51,9 +51,12 @@
             btReportSave = new Button();
             btReportOpen = new Button();
             ofdPicFileOpen = new OpenFileDialog();
+            statusStrip1 = new StatusStrip();
+            tslbMessage = new ToolStripStatusLabel();
             groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pbPicture).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dgvCarReport).BeginInit();
+            statusStrip1.SuspendLayout();
             SuspendLayout();
             // 
             // label1
@@ -335,11 +338,26 @@
             // 
             ofdPicFileOpen.FileName = "openFileDialog1";
             // 
+            // statusStrip1
+            // 
+            statusStrip1.Items.AddRange(new ToolStripItem[] { tslbMessage });
+            statusStrip1.Location = new Point(0, 487);
+            statusStrip1.Name = "statusStrip1";
+            statusStrip1.Size = new Size(780, 22);
+            statusStrip1.TabIndex = 8;
+            statusStrip1.Text = "statusStrip1";
+            // 
+            // tslbMessage
+            // 
+            tslbMessage.Name = "tslbMessage";
+            tslbMessage.Size = new Size(0, 17);
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(780, 491);
+            ClientSize = new Size(780, 509);
+            Controls.Add(statusStrip1);
             Controls.Add(dgvCarReport);
             Controls.Add(pbPicture);
             Controls.Add(btPicDelete);
@@ -368,6 +386,8 @@
             groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pbPicture).EndInit();
             ((System.ComponentModel.ISupportInitialize)dgvCarReport).EndInit();
+            statusStrip1.ResumeLayout(false);
+            statusStrip1.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -402,5 +422,7 @@
         private Button btReportSave;
         private Button btReportOpen;
         private OpenFileDialog ofdPicFileOpen;
+        private StatusStrip statusStrip1;
+        private ToolStripStatusLabel tslbMessage;
     }
 }
