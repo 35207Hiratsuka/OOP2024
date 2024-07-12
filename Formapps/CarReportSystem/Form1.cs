@@ -1,7 +1,10 @@
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics.Eventing.Reader;
 using System.Diagnostics.Metrics;
 using System.Runtime.Serialization.Formatters.Binary;
+using System.Xml;
+using System.Xml.Serialization;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace CarReportSystem {
@@ -9,6 +12,9 @@ namespace CarReportSystem {
 
         //カーレポート管理用リスト
         BindingList<CarReport> listCarReports = new BindingList<CarReport>();
+
+        //
+        Settings settings = new Settings();
 
         //コンストラクタ
         public Form1() {
@@ -33,6 +39,7 @@ namespace CarReportSystem {
             listCarReports.Add(carReport);
 
             setCbAuthor(cbAuthor.Text);
+            setCbCarName(cbCarName.Text);
 
             dgvCarReport.ClearSelection();  //セレクションを外す
             inputItemsAllClear();   //入力項目をすべてクリア
@@ -127,11 +134,37 @@ namespace CarReportSystem {
         private void Form1_Load(object sender, EventArgs e) {
             dgvCarReport.Columns["Picture"].Visible = false;  //画像表示しない
 
-
+            //交互に色を設定（データグリッドビュー）
             dgvCarReport.RowsDefaultCellStyle.BackColor = Color.AliceBlue;
             dgvCarReport.AlternatingRowsDefaultCellStyle.BackColor = Color.WhiteSmoke;
 
+            if(File.Exists("settings.xml")) {
+            //設定ファイルを逆シリアル化して背景を設定(P307)
+                try {
+
+                using(var reader = XmlReader.Create("Settings.xml")) {
+                var serializer = new XmlSerializer(typeof(Settings));
+                var settings = serializer.Deserialize(reader) as Settings;
+                BackColor = Color.FromArgb(settings.MainFromColor);
+                settings.MainFromColor = BackColor.ToArgb();
+                }
+
+
+
+                } catch(Exception) {
+                tslbMessage.Text = "色情報ファイルがありません";
+                }
+
+            }
+            else{
+            tslbMessage.Text = "色情報ファイルがありません";
+
+            }
+
         }
+
+
+
 
         private void dgvCarReport_Click(object sender, EventArgs e) {
             if((dgvCarReport.Rows.Count == 0)
@@ -140,12 +173,9 @@ namespace CarReportSystem {
 
             dtpDate.Value = (DateTime)dgvCarReport.CurrentRow.Cells["Date"].Value;
             cbAuthor.Text = (string)dgvCarReport.CurrentRow.Cells["Author"].Value;
-
             setRadioButtonMaker((CarReport.MakerGroup)dgvCarReport.CurrentRow.Cells["Maker"].Value);
-
             cbCarName.Text = (string)dgvCarReport.CurrentRow.Cells["CarName"].Value;
             tbReport.Text = (string)dgvCarReport.CurrentRow.Cells["Report"].Value;
-
             pbPicture.Image = (Image)dgvCarReport.CurrentRow.Cells["Picture"].Value;
         }
 
@@ -157,7 +187,6 @@ namespace CarReportSystem {
 
             listCarReports.RemoveAt(dgvCarReport.CurrentRow.Index);
             dgvCarReport.ClearSelection();  //セレクションを外す
-            //dgvCarReport.CurrentRow = null;
         }
 
         //修正ボタン
@@ -181,14 +210,10 @@ namespace CarReportSystem {
             dgvCarReport.Refresh(); //データグリッドビューの更新
         }
 
-
-
-
         //記録者のテキストが編集されたら
         private void cbAuthor_TextChanged(object sender, EventArgs e) {
             tslbMessage.Text = "";
         }
-
         //車名のテキストが編集されたら
         private void cbCarName_TextChanged(object sender, EventArgs e) {
             tslbMessage.Text = "";
@@ -199,6 +224,7 @@ namespace CarReportSystem {
             ReportSaveFile();
         }
 
+        //ファイルセーブ処理
         private void ReportSaveFile() {
             if(sfdReportFileSave.ShowDialog() == DialogResult.OK) {
                 try {
@@ -211,18 +237,18 @@ namespace CarReportSystem {
                         bf.Serialize(fs, listCarReports);
 
                     }
-
                 } catch(Exception) {
-
                     tslbMessage.Text = "書き込みエラー";
                 }
             }
         }
-        //開くボタン
+
+        //開くボタンイベントハンドラ
         private void btReportOpen_Click(object sender, EventArgs e) {
             ReportOpenFile();
         }
 
+        //ファイルオープン処理
         private void ReportOpenFile() {
             if(ofdReportFileOpen.ShowDialog() == DialogResult.OK) {
                 try {
@@ -239,42 +265,57 @@ namespace CarReportSystem {
                         foreach(var carReport in listCarReports) {
                             setCbAuthor(carReport.Author);
                             setCbCarName(carReport.CarName);
-
                         }
                     }
-                } catch(Exception) {//catch(何のエラーか)
-                    tslbMessage.Text = "メッセージエリアが違います ";
-
+                } catch(Exception) {
+                    tslbMessage.Text = "ファイル形式が違います";
                 }
-                dgvCarReport.ClearSelection();
+                dgvCarReport.ClearSelection();  //セレクションを外す
             }
         }
 
-        //クリア
         private void btInputItemsClear_Click(object sender, EventArgs e) {
-            inputItemsAllClear();
-            dgvCarReport.ClearSelection();
+
+            inputItemsAllClear();//入力項目をすべてクリア
+            dgvCarReport.ClearSelection();  //セレクションを外す
         }
 
         private void 開くToolStripMenuItem_Click(object sender, EventArgs e) {
-            ReportOpenFile();
+            ReportOpenFile();//ファイルオープン処理
         }
 
-        private void 保存ToolStripMenuItem_Click(object sender, EventArgs e) {
-            ReportSaveFile();
+        private void 保存ToolStripMenuItem1_Click(object sender, EventArgs e) {
+            ReportSaveFile();//ファイルセーブ処理
         }
 
         private void 終了ToolStripMenuItem_Click(object sender, EventArgs e) {
-            DialogResult result = MessageBox.Show("本当に終了しますか？","確認",
-            MessageBoxButtons.YesNo,
-            MessageBoxIcon.Exclamation,
-            MessageBoxDefaultButton.Button2);//デフォルト:No
 
-            //何が選択されたか調べる
-            if(result == DialogResult.Yes) {
-                //「はい」が選択された時
+            if(MessageBox.Show("本当に終了しますか？", "確認",
+                MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 Application.Exit();
-            }  
+        }
+
+        private void 色設定ToolStripMenuItem_Click(object sender, EventArgs e) {
+            if(cdColor.ShowDialog() == DialogResult.OK) {
+                BackColor = cdColor.Color;
+                settings.MainFromColor = cdColor.Color.ToArgb();
+            }
+        }
+
+        private void Form1_FormClosed(object sender, FormClosedEventArgs e) {
+            //設定ファイルのシリアル化
+            try {
+
+                using(var writer = XmlWriter.Create("Settings.xml")) {
+                var serializer = new XmlSerializer(settings.GetType());
+                serializer.Serialize(writer, settings);
+                
+                }
+            }
+            
+            catch(Exception) {
+                MessageBox.Show("設定ファイル読み込みエラー");
+            }
         }
     }
 }
