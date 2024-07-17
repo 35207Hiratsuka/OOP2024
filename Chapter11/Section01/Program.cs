@@ -17,8 +17,8 @@ namespace Section01 {
            // foreach(var xnovelist in xelements) {
            //     var xname = xnovelist.Element("name");
            //     var xworks = xname.Element("masterpieces")
-                                 .Elements("title")
-                                 .Select(x => x.Value);
+                                 //.Elements("title")
+                                 //.Select(x => x.Value);
 
                 //var birth = (DateTime)xnovelist.Element("birth");
                 
