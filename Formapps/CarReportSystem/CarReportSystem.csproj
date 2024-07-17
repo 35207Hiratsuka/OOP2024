@@ -6,6 +6,9 @@
     <Nullable>enable</Nullable>
     <UseWindowsForms>true</UseWindowsForms>
     <ImplicitUsings>enable</ImplicitUsings>
+    <Title>CarReportSystem</Title>
+    <Version>1.2.12.0</Version>
+    <Authors>山田ひろし</Authors>
   </PropertyGroup>
 
   <ItemGroup>
@@ -14,6 +17,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+	  <Compile Update="Properties\Settings.Designer.cs">
+		  
+	  </Compile>
   </ItemGroup>
 
   <ItemGroup>

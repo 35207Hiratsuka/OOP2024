@@ -14,7 +14,7 @@ namespace CarReportSystem {
         BindingList<CarReport> listCarReports = new BindingList<CarReport>();
 
         //
-        Settings settings = new Settings();
+        Settings settings = Settings.getInstance();
 
         //コンストラクタ
         public Form1() {
@@ -139,25 +139,24 @@ namespace CarReportSystem {
             dgvCarReport.AlternatingRowsDefaultCellStyle.BackColor = Color.WhiteSmoke;
 
             if(File.Exists("settings.xml")) {
-            //設定ファイルを逆シリアル化して背景を設定(P307)
+                //設定ファイルを逆シリアル化して背景を設定(P307)
                 try {
 
-                using(var reader = XmlReader.Create("Settings.xml")) {
-                var serializer = new XmlSerializer(typeof(Settings));
-                var settings = serializer.Deserialize(reader) as Settings;
-                BackColor = Color.FromArgb(settings.MainFromColor);
-                settings.MainFromColor = BackColor.ToArgb();
-                }
+                    using(var reader = XmlReader.Create("Settings.xml")) {
+                        var serializer = new XmlSerializer(typeof(Settings));
+                        var settings = serializer.Deserialize(reader) as Settings;
+                        BackColor = Color.FromArgb(settings.MainFromColor);
+                        settings.MainFromColor = BackColor.ToArgb();
+                    }
 
 
 
                 } catch(Exception) {
-                tslbMessage.Text = "色情報ファイルがありません";
+                    tslbMessage.Text = "色情報ファイルがありません";
                 }
 
-            }
-            else{
-            tslbMessage.Text = "色情報ファイルがありません";
+            } else {
+                tslbMessage.Text = "色情報ファイルがありません";
 
             }
 
@@ -307,15 +306,18 @@ namespace CarReportSystem {
             try {
 
                 using(var writer = XmlWriter.Create("Settings.xml")) {
-                var serializer = new XmlSerializer(settings.GetType());
-                serializer.Serialize(writer, settings);
-                
+                    var serializer = new XmlSerializer(settings.GetType());
+                    serializer.Serialize(writer, settings);
+
                 }
-            }
-            
-            catch(Exception) {
+            } catch(Exception) {
                 MessageBox.Show("設定ファイル読み込みエラー");
             }
+        }
+
+        private void このアプリについてToolStripMenuItem_Click(object sender, EventArgs e) {
+            var fmversion = new fmVersion();
+            fmversion.ShowDialog();
         }
     }
 }

@@ -63,6 +63,8 @@
             toolStripSeparator2 = new ToolStripSeparator();
             終了ToolStripMenuItem = new ToolStripMenuItem();
             cdColor = new ColorDialog();
+            ヘルプToolStripMenuItem = new ToolStripMenuItem();
+            このアプリについてToolStripMenuItem = new ToolStripMenuItem();
             groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pbPicture).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dgvCarReport).BeginInit();
@@ -377,7 +379,7 @@
             // 
             // menuStrip1
             // 
-            menuStrip1.Items.AddRange(new ToolStripItem[] { ファイルToolStripMenuItem });
+            menuStrip1.Items.AddRange(new ToolStripItem[] { ファイルToolStripMenuItem, ヘルプToolStripMenuItem });
             menuStrip1.Location = new Point(0, 0);
             menuStrip1.Name = "menuStrip1";
             menuStrip1.Size = new Size(780, 24);
@@ -428,6 +430,20 @@
             終了ToolStripMenuItem.Size = new Size(180, 22);
             終了ToolStripMenuItem.Text = "終了";
             終了ToolStripMenuItem.Click += 終了ToolStripMenuItem_Click;
+            // 
+            // ヘルプToolStripMenuItem
+            // 
+            ヘルプToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { このアプリについてToolStripMenuItem });
+            ヘルプToolStripMenuItem.Name = "ヘルプToolStripMenuItem";
+            ヘルプToolStripMenuItem.Size = new Size(48, 20);
+            ヘルプToolStripMenuItem.Text = "ヘルプ";
+            // 
+            // このアプリについてToolStripMenuItem
+            // 
+            このアプリについてToolStripMenuItem.Name = "このアプリについてToolStripMenuItem";
+            このアプリについてToolStripMenuItem.Size = new Size(180, 22);
+            このアプリについてToolStripMenuItem.Text = "このアプリについて…";
+            このアプリについてToolStripMenuItem.Click += このアプリについてToolStripMenuItem_Click;
             // 
             // Form1
             // 
@@ -518,5 +534,7 @@
         private ToolStripMenuItem 終了ToolStripMenuItem;
         private ToolStripSeparator 保存ToolStripMenuItem;
         private ColorDialog cdColor;
+        private ToolStripMenuItem ヘルプToolStripMenuItem;
+        private ToolStripMenuItem このアプリについてToolStripMenuItem;
     }
 }
