@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{5C1A1B42-FBEC-465E-AFAE-2A82A8D3BC2A}</ProjectGuid>
+    <ProjectGuid>{46E83855-247C-4B32-882A-A2A1DF89BE52}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <RootNamespace>Exercise01</RootNamespace>
     <AssemblyName>Exercise01</AssemblyName>
@@ -47,12 +47,12 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
+    <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Sample.xml" />
+    <Content Include="Sample.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

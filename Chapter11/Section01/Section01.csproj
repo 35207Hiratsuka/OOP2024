@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{3C0D66B6-2136-42EF-96BA-7B7F2B958F5E}</ProjectGuid>
+    <ProjectGuid>{99D80059-DBCA-42A7-9A7B-3FEDD26652FA}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <RootNamespace>Section01</RootNamespace>
     <AssemblyName>Section01</AssemblyName>
@@ -51,7 +51,9 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="novelists.xml" />
+    <Content Include="novelists.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

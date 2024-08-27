@@ -22,95 +22,84 @@ namespace Exercise01 {
         }
 
         private static void Exercise1_1(string file) {
-
             var xdoc = XDocument.Load(file);
-            foreach(var xsports in xdoc.Root.Elements()) {
-                var xname = xsports.Element("name");
-                var xteam = xsports.Element("teammembers");
-                Console.WriteLine("{0}：{1}メンバー",xname.Value,xteam.Value);
+            var sports = xdoc.Root.Elements()
+                             .Select(x => new {
+                                 Name = x.Element("name").Value,
+                                 Teammembers = x.Element("teammembers").Value
+                             });
+            foreach (var sport in sports) {
+                Console.WriteLine("{0} {1}", sport.Name, sport.Teammembers);
             }
         }
 
         private static void Exercise1_2(string file) {
             var xdoc = XDocument.Load(file);
-            var firstsports = xdoc.Root.Elements()
-                                  .OrderBy(x => x.Element("firstplayed").Value);
-            foreach(var xsports in firstsports) {
-                var xkanji = xsports.Element("name").Attribute("kanji");
-                var xplayed = xsports.Element("firstplayed");
+            var sports = xdoc.Root.Elements()
+                            .Select(x => new {
+                                Name = x.Element("name").Attribute("kanji").Value,
+                                Firstplayed = x.Element("firstplayed").Value,
+                            }).OrderBy(x => x.Firstplayed);
 
-                Console.WriteLine("{0}({1})" ,xkanji.Value,xplayed.Value);
+            foreach (var sport in sports) {
+                Console.WriteLine("{0}({1})", sport.Name, sport.Firstplayed);
             }
 
         }
 
         private static void Exercise1_3(string file) {
+#if false 
+            //解答例①
             var xdoc = XDocument.Load(file);
-            var many = xdoc.Root.Elements().OrderByDescending(x => x.Element("teammembers").Value)
-                                           .First();
-            Console.WriteLine("{0}：{1}メンバー",many.Element("name").Value,many.Element("teammembers").Value);
+            var sport = xdoc.Root.Elements()
+                            .OrderByDescending(x => x.Element("teammembers").Value)
+                            .First();
+
+            Console.WriteLine($"{sport.Element("name").Value}");
+#else 
+            //解答例②
+            var xdoc = XDocument.Load(file);
+            var sport = xdoc.Root.Elements()
+                             .Select(x => new {
+                                 Name = x.Element("name").Value,
+                                 Teammembers = x.Element("teammembers").Value
+                             })
+                             .OrderByDescending(x => int.Parse(x.Teammembers))
+                             .First();
+            Console.WriteLine("{0}", sport.Name);
+#endif
 
         }
 
         private static void Exercise1_4(string file, string newfile) {
-             var fin = true;
-            while(fin) {
-                fin = false;
+            List<XElement> xElements = new List<XElement>();
 
-                Console.WriteLine("＊スポーツ追加");
-                Console.Write("競技名(カタカナ)：");
-                var cName = Console.ReadLine();
-                Console.Write("競技名(漢字)：");
-                var cKanji = Console.ReadLine();
-                Console.Write("１チームの人数：");
-                var cTeam = Console.ReadLine();
-                Console.Write("起源：");
-                var cFirst = Console.ReadLine();
-            
-            
+            var xdoc = XDocument.Load(file);
+            string name, kanji, teammembers, firstplayed;
+            int nextFlag;
+            while (true) {
+                //入力処理
+                Console.Write("名称：");   name = Console.ReadLine();
+                Console.Write("漢字：");   kanji = Console.ReadLine();
+                Console.Write("人数：");   teammembers = Console.ReadLine();
+                Console.Write("起源：");   firstplayed = Console.ReadLine();
+                //1件分の要素作成
                 var element = new XElement("ballsport",
-                    new XElement("name", cName, 
-                                 new XAttribute("kanji", cKanji)
-                                 ),
-                    new XElement("teammember", cTeam),
-                    new XElement("firstplayed", cFirst)
-                  );
-                var xdoc = XDocument.Load(file);
-                
-                xdoc.Root.Add(element);
+                     new XElement("name", name, new XAttribute("kanji", kanji)),
+                     new XElement("teammembers", teammembers),
+                     new XElement("firstplayed", firstplayed)
+                );
+                xElements.Add(element); //リストへ要素を追加
 
-                Console.WriteLine("追加：1 / 保存：2");
-                Console.Write("＞");
-                var choice = Console.ReadLine();
-
-                switch(choice) {
-                    case "1":
-                    fin = true;    
-                        break;
-
-
-                    case "2":
-                    xdoc.Save(newfile);
-                    
-                        break;
-                }
-
+                Console.WriteLine();    //改行
+                Console.Write("追加【1】保存【２】");
+                Console.Write(">");
+                nextFlag = int.Parse(Console.ReadLine());
+                if (nextFlag == 2)　break;  //無限ループを抜ける
+                Console.WriteLine();    //改行
             }
-            
-
-
-
-            //var element = new XElement("ballsport",
-            //    new XElement("name", "サッカーボール", 
-            //                 new XAttribute("kanji", "蹴球")
-            //                 ),
-            //    new XElement("teammember", "11"),
-            //    new XElement("firstplayed", "1863")
-            //  );
-            //var xdoc = XDocument.Load(file);
-            //xdoc.Root.Add(element);
-
-            //xdoc.Save(newfile);
+            xdoc.Root.Add(xElements);
+            xdoc.Save(newfile); //保存
         }
     }
 }

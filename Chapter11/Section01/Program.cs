@@ -8,22 +8,22 @@ using System.Xml.Linq;
 namespace Section01 {
     internal class Program {
         static void Main(string[] args) {
-
+            
             var xdoc = XDocument.Load("novelists.xml");
-            var xtiles = xdoc.Root.Descendants("title");
-                //.OrderByDescending(x => ((DateTime)x.Element("birth")));
-                //.Where(x => ((DateTime)x.Element("birth")).Year >= 1900);
+            var xtitles = xdoc.Root.Descendants("title");
+            
+            //foreach (var xnovelist in xelements) {
+            //    var xname = xnovelist.Element("name");//要素の取得
+            //    var xworks = xnovelist.Element("masterpieces")
+            //                            .Elements("title")
+            //                            .Select(x => x.Value);
 
-           // foreach(var xnovelist in xelements) {
-           //     var xname = xnovelist.Element("name");
-           //     var xworks = xname.Element("masterpieces")
-                                 //.Elements("title")
-                                 //.Select(x => x.Value);
+            //    Console.WriteLine("{0} - {1}", xname.Value, string.Join(", ", xworks));
 
-                //var birth = (DateTime)xnovelist.Element("birth");
-                
-           //    Console.WriteLine("{0} - {1}",xname.Value,string.Join(",",xworks));
-           // }
+            //}
+
         }
     }
 }
+
+

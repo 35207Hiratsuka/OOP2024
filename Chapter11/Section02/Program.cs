@@ -8,15 +8,8 @@ using System.Xml.Linq;
 namespace Section02 {
     internal class Program {
         static void Main(string[] args) {
-
             AddElement();
-
-
-
-
-
         }
-
 
         public static void AddElement() {
             var element = new XElement("novelist",
@@ -32,13 +25,13 @@ namespace Section02 {
             xdoc.Root.Add(element);
 
             // これ以降は確認用のコード 
-            foreach(var xnovelist in xdoc.Root.Elements()) {
+            foreach (var xnovelist in xdoc.Root.Elements()) {
                 var xname = xnovelist.Element("name");
                 var birth = (DateTime)xnovelist.Element("birth");
                 Console.WriteLine("{0} {1}", xname.Value, birth.ToShortDateString());
             }
-            //Display(xdoc);
 
+            //保存
             xdoc.Save("newXmlFile.xml");
         }
     }
