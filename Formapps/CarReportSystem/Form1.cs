@@ -145,7 +145,9 @@ namespace CarReportSystem {
                     using(var reader = XmlReader.Create("Settings.xml")) {
                         var serializer = new XmlSerializer(typeof(Settings));
                         var settings = serializer.Deserialize(reader) as Settings;
+#pragma warning disable CS8602 // null 参照の可能性があるものの逆参照です。
                         BackColor = Color.FromArgb(settings.MainFromColor);
+#pragma warning restore CS8602 // null 参照の可能性があるものの逆参照です。
                         settings.MainFromColor = BackColor.ToArgb();
                     }
 

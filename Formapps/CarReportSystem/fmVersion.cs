@@ -22,7 +22,7 @@ namespace CarReportSystem {
         private void fmVersion_Load(object sender, EventArgs e) {
             var asm = Assembly.GetExecutingAssembly();
             var var = asm.GetName().Version;
-            var varsionText = string.Format($"{var.Major},{var.Minor},{var.Build},{var.Revision},");
+            var varsionText = string.Format($"{var?.Major},{var?.Minor},{var?.Build},{var?.Revision},");
         }
     }
 }
