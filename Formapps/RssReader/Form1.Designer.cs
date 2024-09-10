@@ -32,6 +32,7 @@
             this.cbRssUrl = new System.Windows.Forms.ComboBox();
             this.btForward = new System.Windows.Forms.Button();
             this.btBack = new System.Windows.Forms.Button();
+            this.label2 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.webView21)).BeginInit();
             this.SuspendLayout();
             // 
@@ -50,9 +51,9 @@
             // 
             this.lbRssTitle.FormattingEnabled = true;
             this.lbRssTitle.ItemHeight = 12;
-            this.lbRssTitle.Location = new System.Drawing.Point(12, 75);
+            this.lbRssTitle.Location = new System.Drawing.Point(12, 87);
             this.lbRssTitle.Name = "lbRssTitle";
-            this.lbRssTitle.Size = new System.Drawing.Size(687, 160);
+            this.lbRssTitle.Size = new System.Drawing.Size(687, 172);
             this.lbRssTitle.TabIndex = 2;
             this.lbRssTitle.SelectedIndexChanged += new System.EventHandler(this.lbRssTitle_SelectedIndexChanged);
             // 
@@ -70,7 +71,7 @@
             // btSet
             // 
             this.btSet.Font = new System.Drawing.Font("メイリオ", 8F);
-            this.btSet.Location = new System.Drawing.Point(908, 220);
+            this.btSet.Location = new System.Drawing.Point(908, 217);
             this.btSet.Name = "btSet";
             this.btSet.Size = new System.Drawing.Size(109, 42);
             this.btSet.TabIndex = 5;
@@ -112,9 +113,9 @@
             // btForward
             // 
             this.btForward.Font = new System.Drawing.Font("メイリオ", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.btForward.Location = new System.Drawing.Point(726, 241);
+            this.btForward.Location = new System.Drawing.Point(798, 229);
             this.btForward.Name = "btForward";
-            this.btForward.Size = new System.Drawing.Size(75, 23);
+            this.btForward.Size = new System.Drawing.Size(75, 33);
             this.btForward.TabIndex = 9;
             this.btForward.Text = "進む";
             this.btForward.UseVisualStyleBackColor = true;
@@ -123,19 +124,30 @@
             // btBack
             // 
             this.btBack.Font = new System.Drawing.Font("メイリオ", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.btBack.Location = new System.Drawing.Point(816, 241);
+            this.btBack.Location = new System.Drawing.Point(717, 229);
             this.btBack.Name = "btBack";
-            this.btBack.Size = new System.Drawing.Size(75, 23);
+            this.btBack.Size = new System.Drawing.Size(75, 33);
             this.btBack.TabIndex = 10;
             this.btBack.Text = "戻る";
             this.btBack.UseVisualStyleBackColor = true;
             this.btBack.Click += new System.EventHandler(this.btBack_Click);
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("メイリオ", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.label2.Location = new System.Drawing.Point(12, 66);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(140, 18);
+            this.label2.TabIndex = 11;
+            this.label2.Text = "ニュースタイトル一覧：";
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1029, 740);
+            this.Controls.Add(this.label2);
             this.Controls.Add(this.btBack);
             this.Controls.Add(this.btForward);
             this.Controls.Add(this.cbRssUrl);
@@ -163,6 +175,7 @@
         private System.Windows.Forms.ComboBox cbRssUrl;
         private System.Windows.Forms.Button btForward;
         private System.Windows.Forms.Button btBack;
+        private System.Windows.Forms.Label label2;
     }
 }
 
