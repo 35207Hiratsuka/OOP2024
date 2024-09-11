@@ -17,6 +17,7 @@ namespace RssReader {
     public partial class Form1 : Form {
 
         List<Itemdata> Items;
+        List<Itemdata> bookItems;
 
         public Form1() {
             InitializeComponent();
@@ -72,22 +73,24 @@ namespace RssReader {
                 return;
             }
 
-            if(!cbBookmark.Items.Contains(inputT))
-                cbBookmark.Items.Add(inputT);
-            bookmarkLink = webView21.CoreWebView2.Source;
+            
+                foreach(var item in Items) {
+                    lbRssTitle.Items.Add(item.Title);
+                }
+            }
+            cbBookmark.Items.Add(inputT);
 
-        }
-
-        private void cbBookmark_SelectedIndexChanged(object sender, EventArgs e) {
-            webView21.Source = new Uri(bookmarkLink);
-        }
+                bookmarkLink = ;
+                //ブックマーク不完全　リストを使う？
+            }
 
         private void btForward_Click(object sender, EventArgs e) {
             if(webView21.CanGoForward) {
                 webView21.GoForward();
             } else {
-                return;
+                return; 
             }
+
         }
 
         private void btBack_Click(object sender, EventArgs e) {
@@ -96,8 +99,19 @@ namespace RssReader {
             } else {
                 return;
             }
+
+        }
+
+        private void cbBookmark_SelectedIndexChanged(object sender, EventArgs e) {
+            webView21.Source = new Uri(bookmarkLink);
+
         }
     }
 
     
-}
+
+
+    }
+
+   
+

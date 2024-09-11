@@ -1,4 +1,6 @@
-﻿namespace RssReader {
+﻿using System;
+
+namespace RssReader {
     partial class Form1 {
         /// <summary>
         /// 必要なデザイナー変数です。
@@ -85,9 +87,9 @@
             this.label1.Font = new System.Drawing.Font("メイリオ", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.label1.Location = new System.Drawing.Point(21, 14);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(80, 18);
+            this.label1.Size = new System.Drawing.Size(222, 18);
             this.label1.TabIndex = 6;
-            this.label1.Text = "URLを入力：";
+            this.label1.Text = "URLを入力(またはトピックスを選択)：";
             // 
             // cbBookmark
             // 
@@ -163,6 +165,18 @@
             this.ResumeLayout(false);
             this.PerformLayout();
 
+        }
+
+        private void btBack_Click(object sender, EventArgs e) {
+            throw new NotImplementedException();
+        }
+
+        private void btForward_Click(object sender, EventArgs e) {
+            throw new NotImplementedException();
+        }
+
+        private void cbBookmark_SelectedIndexChanged(object sender, EventArgs e) {
+            throw new NotImplementedException();
         }
 
         #endregion
