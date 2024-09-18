@@ -8,7 +8,7 @@ using SampleEntityFramework.Models;
 namespace SampleEntityFramework {
     internal class Program {
         static void Main(string[] args) {
-            GetBooks3();
+            GetBooks4();
 
         }
 
@@ -180,6 +180,34 @@ namespace SampleEntityFramework {
                 
 
             
+        }
+        
+        
+        static void GetBooks4() {
+
+
+            using(var db = new BooksDbContext()) {
+                var book = db.Books.OrderBy(b => b.PublishedYear).Take(3).ToList();
+                foreach(var item in book)
+                   Console.WriteLine($"{item.Title}  {item.Author.Name}");
+                
+                
+            }
+                
+
+            
+        }
+
+
+        static void GetBooks5() {
+            using(var db = new BooksDbContext()) {
+
+                
+                
+            }
+
+
+
         }
 
         static void DisplayAllBooks() {
