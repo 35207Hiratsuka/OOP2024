@@ -8,7 +8,7 @@ using SampleEntityFramework.Models;
 namespace SampleEntityFramework {
     internal class Program {
         static void Main(string[] args) {
-            GetBooks4();
+            GetBooks5();
 
         }
 
@@ -202,7 +202,32 @@ namespace SampleEntityFramework {
         static void GetBooks5() {
             using(var db = new BooksDbContext()) {
 
-                
+                var authors = db.Authors.OrderByDescending(a => a.Birthday).ToList();
+                foreach(var author in authors) {
+                    Console.WriteLine("{0}",author.Name);
+                    foreach(var book in author.Books) {
+                        Console.WriteLine("{0} {1}",book.Title,book.PublishedYear);
+                    }
+
+                }
+
+
+
+
+
+
+
+
+
+               // var groups = db.Books.OrderBy(b => b.Author.Birthday)
+               //     .GroupBy(c => c.Author.Name)
+               //    .Select(g => new {
+               //         Titles = g.Select(x => x.Title),
+               //         Year = g.Select(d => d.PublishedYear)
+               //     }).ToList() ;
+
+                //foreach(var item in groups)
+                //    Console.WriteLine($"{item.Titles}  {item.Year}");
                 
             }
 
