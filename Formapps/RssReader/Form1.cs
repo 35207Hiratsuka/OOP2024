@@ -15,6 +15,8 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace RssReader {
 
+    //調べても分からなかったコードをコメントアウトしてあります（３箇所）
+
     public partial class Form1 : Form {
 
         List<Itemdata> Items;
@@ -22,6 +24,21 @@ namespace RssReader {
 
         public Form1() {
             InitializeComponent();
+
+            //1.URLを入力するコンボボックスのリストに、カテゴリ一覧をあらかじめ用意する方法
+            //（↑このそれぞれにURLを埋め込む方法）
+
+            //lbRssTitle.Items.Add("主要");
+            //lbRssTitle.Items.Add("国内");
+            //lbRssTitle.Items.Add("国際");
+            //lbRssTitle.Items.Add("経済");
+            //lbRssTitle.Items.Add("エンタメ");
+            //lbRssTitle.Items.Add("スポーツ");
+            //lbRssTitle.Items.Add("IT"); 
+            //lbRssTitle.Items.Add("科学");
+            //lbRssTitle.Items.Add("地域");
+
+
 
         }
 
@@ -36,9 +53,9 @@ namespace RssReader {
 
 
 
-            //1.読み込めないURLを入力した際、それを検出するコード
+            //2.読み込めないURLを入力した際、それを検出するコード
 
-            //if(cbRssUrl.Text == "" || cbRssUrl.Items.) {
+            //if(cbRssUrl.Text == "" || cbRssUrl.Items.) {　　←ここの2つめ
             //    MessageBox.Show("正しいURLまたはお気に入り名称を入力してください");
             //    return;
             //}
@@ -66,8 +83,7 @@ namespace RssReader {
         }
         
         
-        //2.URLを入力するコンボボックスのリストに、カテゴリ一覧をあらかじめ用意する方法
-        //（↑まだ詳しく調べられていないので後々作れるかもしれません）
+        
 
 
         //ニュースタイトル一覧
@@ -97,11 +113,12 @@ namespace RssReader {
                 return;
             }
 
-            //2.各ブックマークへのURLの埋め込み方
+            //3.各ブックマークへのURLの埋め込み方
+            //リストにしようとすると「暗黙的に変換できない」とエラーになる
 
-            string bookmarkLink = webView21.CoreWebView2.Source;
+            //string bookmarkLink = webView21.CoreWebView2.Source;
 
-            bookItems = new Itemdata { Title = inputT, Link = bookmarkLink };
+            //bookItems = new Itemdata { Title = inputT, Link = bookmarkLink };
 
             cbBookmark.Items.Add(inputT);
 
