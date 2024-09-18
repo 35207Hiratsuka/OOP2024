@@ -101,7 +101,6 @@ namespace RssReader {
             this.cbBookmark.Size = new System.Drawing.Size(259, 26);
             this.cbBookmark.TabIndex = 7;
             this.cbBookmark.Text = "お気に入り一覧";
-            this.cbBookmark.SelectedIndexChanged += new System.EventHandler(this.cbBookmark_SelectedIndexChanged);
             // 
             // cbRssUrl
             // 
@@ -167,17 +166,9 @@ namespace RssReader {
 
         }
 
-        private void btBack_Click(object sender, EventArgs e) {
-            throw new NotImplementedException();
-        }
+        
 
-        private void btForward_Click(object sender, EventArgs e) {
-            throw new NotImplementedException();
-        }
 
-        private void cbBookmark_SelectedIndexChanged(object sender, EventArgs e) {
-            throw new NotImplementedException();
-        }
 
         #endregion
         private System.Windows.Forms.Button btGet;
