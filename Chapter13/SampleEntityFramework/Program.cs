@@ -8,7 +8,7 @@ using SampleEntityFramework.Models;
 namespace SampleEntityFramework {
     internal class Program {
         static void Main(string[] args) {
-            DisplayAllBooks();
+            GetBooks3();
 
         }
 
@@ -165,16 +165,25 @@ namespace SampleEntityFramework {
             }
         }
         
-        static IEnumerable<Book> GetBooks3() {
-            using(var db = new BooksDbContext()) {
-                return db.Books.Where(book => book.Title.Length).Max
-                               .ToList();
+        static void GetBooks3() {
 
+
+            using(var db = new BooksDbContext()) {
+                var book =  db.Books.Where(b => b.Title.Length ==
+                                            db.Books.Max(x => x.Title.Length));
+
+                foreach(var item in book)
+                Console.WriteLine(item.Title);
+                
+                
             }
+                
+
+            
         }
 
         static void DisplayAllBooks() {
-            var books = GetBooks3();
+            var books = GetBooks2();
             foreach(var book in books) {
                 Console.WriteLine($"{book.Title}{book.PublishedYear}");
                 Console.WriteLine();
