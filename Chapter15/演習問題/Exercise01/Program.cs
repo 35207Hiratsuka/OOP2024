@@ -139,7 +139,7 @@ namespace Exercise01 {
                   .Where(g => g.Count >= 4);
 
             foreach (var group in groups) {
-                Console.WriteLine(group.Category);
+                Console.WriteLine(group.Category + "＿" + group.Count + "冊");
             }
 
         }
