@@ -20,66 +20,73 @@ namespace RssReader {
     public partial class Form1 : Form {
 
         List<Itemdata> Items;
-        List<Itemdata> bookItems;
-
-        public Form1() {
-            InitializeComponent();
-
-            //1.URLを入力するコンボボックスのリストに、カテゴリ一覧をあらかじめ用意する方法
-            //（↑このそれぞれにURLを埋め込む方法）
-
-            //lbRssTitle.Items.Add("主要");
-            //lbRssTitle.Items.Add("国内");
-            //lbRssTitle.Items.Add("国際");
-            //lbRssTitle.Items.Add("経済");
-            //lbRssTitle.Items.Add("エンタメ");
-            //lbRssTitle.Items.Add("スポーツ");
-            //lbRssTitle.Items.Add("IT"); 
-            //lbRssTitle.Items.Add("科学");
-            //lbRssTitle.Items.Add("地域");
+        List<Itemdata> bookItems = new List<Itemdata>();
 
 
-
-        }
-
+        
         public class Itemdata {
             public string Title { get; set; }
             public string Link { get; set; }
         }
+        
+        Dictionary<string, string> categoryUrls =
+                new Dictionary<string, string> {
+                { "主要", "https://news.yahoo.co.jp/rss/topics/top-picks.xml" },
+                { "国内", "https://news.yahoo.co.jp/rss/topics/domestic.xml" },
+                { "国際", "https://news.yahoo.co.jp/rss/topics/world.xml" },
+                { "経済", "https://news.yahoo.co.jp/rss/topics/business.xml" },
+                { "エンタメ", "https://news.yahoo.co.jp/rss/topics/entertainment.xml" },
+                { "スポーツ", "https://news.yahoo.co.jp/rss/topics/sports.xml" },
+                { "IT", "https://news.yahoo.co.jp/rss/topics/it.xml" },
+                { "科学", "https://news.yahoo.co.jp/rss/topics/science.xml" },
+                { "地域", "https://news.yahoo.co.jp/rss/topics/local.xml" }
+            };
+
+        public Form1() {
+            InitializeComponent();
+
+            foreach(var category in categoryUrls.Keys) {
+                cbRssUrl.Items.Add(category);
+            }
+
+        }
+
+        
 
 
         //取得ボタン
         private void btGet_Click(object sender, EventArgs e) {
 
 
-
-            //2.読み込めないURLを入力した際、それを検出するコード
-
-            //if(cbRssUrl.Text == "" || cbRssUrl.Items.) {　　←ここの2つめ
-            //    MessageBox.Show("正しいURLまたはお気に入り名称を入力してください");
-            //    return;
-            //}
-
-
             if(lbRssTitle.Items != null)
                 lbRssTitle.Items.Clear();
 
+            string url = categoryUrls[cbRssUrl.SelectedItem.ToString()];
 
 
-            using(var wc = new WebClient()) {
-                var url = wc.OpenRead(cbRssUrl.Text);
-                var xdoc = XDocument.Load(url);
+            try {
+                using(var wc = new WebClient()) {
+                    var stream = wc.OpenRead(url);
+                    var xdoc = XDocument.Load(stream);
 
-                Items = xdoc.Root.Descendants("item")
-                                    .Select(item => new Itemdata {
-                                        Title = item.Element("title").Value,
-                                        Link = item.Element("link").Value,
-                                    }).ToList();
+                    Items = xdoc.Root.Descendants("item")
+                                        .Select(item => new Itemdata {
+                                            Title = item.Element("title").Value,
+                                            Link = item.Element("link").Value,
+                                        }).ToList();
+                }
+
+            } catch (Exception ex){
+                MessageBox.Show("URLの読み込みに失敗しました: " + ex.Message);
+                    return;
+            } 
+
+
 
                 foreach(var item in Items) {
                     lbRssTitle.Items.Add(item.Title);
                 }
-            }
+            
         }
         
         
@@ -95,7 +102,7 @@ namespace RssReader {
 
 
 
-
+        
 
         //ブックマーク
 
@@ -113,14 +120,22 @@ namespace RssReader {
                 return;
             }
 
-            //3.各ブックマークへのURLの埋め込み方
-            //リストにしようとすると「暗黙的に変換できない」とエラーになる
 
-            //string bookmarkLink = webView21.CoreWebView2.Source;
 
-            //bookItems = new Itemdata { Title = inputT, Link = bookmarkLink };
+            string bookmarkLink = webView21.CoreWebView2.Source;
 
-            cbBookmark.Items.Add(inputT);
+            if(string.IsNullOrEmpty(bookmarkLink)) {
+                MessageBox.Show("ブックマークのURLが無効です");
+                return;
+            }
+
+            try {
+                bookItems.Add(new Itemdata { Title = inputT, Link = bookmarkLink });
+                cbBookmark.Items.Add(inputT);
+            } catch(Exception ex) {
+                MessageBox.Show("ブックマークの追加中にエラーが発生しました: " + ex.Message);
+            }
+
 
         }
 
@@ -148,11 +163,11 @@ namespace RssReader {
         private void cbBookmark_SelectedIndexChanged(object sender, EventArgs e) {
             webView21.Source = new Uri(bookItems[cbBookmark.SelectedIndex].Link);
         }
-
-
-
-        
-
-        
     }
+
+
+
+        
+
+        
 }
