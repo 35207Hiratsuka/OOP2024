@@ -11,6 +11,8 @@ namespace DistanceConverter {
             new FeetConverter(),
             new YardConverter(),
             new InchConverter(),
+            new MileConverter(),
+            new KiloMeterConverter(),
         };
 
 
