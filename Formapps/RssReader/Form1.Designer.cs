@@ -35,6 +35,7 @@ namespace RssReader {
             this.btForward = new System.Windows.Forms.Button();
             this.btBack = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.webView21)).BeginInit();
             this.SuspendLayout();
             // 
@@ -98,9 +99,10 @@ namespace RssReader {
             this.cbBookmark.FormattingEnabled = true;
             this.cbBookmark.Location = new System.Drawing.Point(717, 32);
             this.cbBookmark.Name = "cbBookmark";
-            this.cbBookmark.Size = new System.Drawing.Size(259, 26);
+            this.cbBookmark.Size = new System.Drawing.Size(269, 26);
             this.cbBookmark.TabIndex = 7;
             this.cbBookmark.Text = "お気に入り一覧";
+            this.cbBookmark.SelectedIndexChanged += new System.EventHandler(this.cbBookmark_SelectedIndexChanged);
             // 
             // cbRssUrl
             // 
@@ -143,11 +145,22 @@ namespace RssReader {
             this.label2.TabIndex = 11;
             this.label2.Text = "ニュースタイトル一覧：";
             // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("メイリオ", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.label3.Location = new System.Drawing.Point(717, 14);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(176, 18);
+            this.label3.TabIndex = 12;
+            this.label3.Text = "お気に入りからページを選択：";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1029, 740);
+            this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.btBack);
             this.Controls.Add(this.btForward);
@@ -181,6 +194,7 @@ namespace RssReader {
         private System.Windows.Forms.Button btForward;
         private System.Windows.Forms.Button btBack;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label3;
     }
 }
 
