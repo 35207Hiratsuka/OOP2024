@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{AC495CD1-5C85-404E-BCFA-5B559E1D0C05}</ProjectGuid>
+    <ProjectGuid>{D73CC3C3-1F63-4DBB-BAD3-E80CFEFC1A91}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>LineCounter</RootNamespace>
-    <AssemblyName>LineCounter</AssemblyName>
+    <RootNamespace>TextNumberSizeChange</RootNamespace>
+    <AssemblyName>TextNumberSizeChange</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -43,12 +43,21 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Framework\ITextFileService.cs" />
+    <Compile Include="Framework\TextFileProcessor.cs" />
+    <Compile Include="ToHankakuProcessor.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="LineCounterProcessor.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\TextFileProcessor\TextFileProcessor.csproj">
+      <Project>{c7358ffa-d126-4861-8ddd-3249537af2cb}</Project>
+      <Name>TextFileProcessor</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
