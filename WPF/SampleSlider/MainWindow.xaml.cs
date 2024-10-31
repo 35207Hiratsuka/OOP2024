@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace SampleApplication {
+namespace SampleSlider {
     /// <summary>
     /// MainWindow.xaml の相互作用ロジック
     /// </summary>
@@ -21,19 +21,5 @@ namespace SampleApplication {
         public MainWindow() {
             InitializeComponent();
         }
-
-        private void Button_Click(object sender, RoutedEventArgs e) {
-            MessageBox.Show("こんにちは！");
-        }
-        
-        private void okButton_Click(object sender, RoutedEventArgs e) {
-            MessageBox.Show(string.Format("入力された文字は、{0}です。",messegeTextBox.Text));
-        }
-
-        private void cancelButton_Click(object sender, RoutedEventArgs e) {
-            MessageBox.Show("キャンセルされました。");
-        }
-
-        
     }
 }
