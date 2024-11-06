@@ -56,7 +56,7 @@ namespace SampleUnitConverter {
             }
         }
 
-        /// <summary>メートル単位からヤード単位に変換します</summary>
+        // <summary>メートル単位からヤード単位に変換します</summary>
         public double FromMetricUnit(MetricUnit unit, double value) {
             return (value * unit.Coefficient) / 25.4 / this.Coefficient;
         }
