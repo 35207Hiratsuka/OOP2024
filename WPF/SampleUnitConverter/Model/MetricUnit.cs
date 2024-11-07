@@ -5,6 +5,5 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace SampleUnitConverter.Model {
-    internal class MetricUnit {
-    }
+
 }
