@@ -40,8 +40,8 @@ namespace Exercise01 {
             var tw = new TimeWatch();
             tw.Start();
             Thread.Sleep(1000);
-            TimeSpan duration = tw.Stop();
-            tbDisp.Text = "処理時間は" + duration.TotalMicroseconds + "ミリ秒でした。";
+            //TimeSpan duration = tw.Stop();
+            //tbDisp.Text = "処理時間は" + duration.TotalMicroseconds + "ミリ秒でした。";
         }
     }
 
