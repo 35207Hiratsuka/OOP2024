@@ -20,10 +20,13 @@ namespace CustomerApp {
     /// MainWindow.xaml の相互作用ロジック
     /// </summary>
     public partial class MainWindow : Window {
+        private List<Customer> _customers;
+
         public MainWindow() {
             InitializeComponent();
+            ReadDatabase();
         }
-
+        
         private void SaveButton_Click(object sender, RoutedEventArgs e) {
             var customer = new Customer() {
                 Name = NameTextBox.Text,
@@ -34,21 +37,42 @@ namespace CustomerApp {
             using(var connection = new SQLiteConnection(App.databasePass)) {
                 connection.CreateTable<Customer>();
                 connection.Insert(customer);
+                ReadDatabase();
             }
         }
-
+        
         private void ReadButton_Click(object sender, RoutedEventArgs e) {
-            
+           
+        }
+
+        private void ReadDatabase() {
             using(var connection = new SQLiteConnection(App.databasePass)) {
                 connection.CreateTable<Customer>();
-                var customers = connection.Table<Customer>().ToList();
+                _customers = connection.Table<Customer>().ToList();
 
-                CustomerListView.ItemsSource = customers;
+                CustomerListView.ItemsSource = _customers;
             }
         }
 
         private void SearchTextBox_TextChanged(object sender, TextChangedEventArgs e) {
+            var filterText = _customers.Where(x => x.Name.Contains(SearchTextBox.Text)).ToList();
+            CustomerListView.ItemsSource = filterText;
 
+        }
+
+        private void DeleteButton_Click(object sender, RoutedEventArgs e) {
+            var item = CustomerListView.SelectedItem as Customer;
+            if (item == null) {
+                MessageBox.Show("削除する行を選択してください");
+                return;
+            }
+
+            using(var connection = new SQLiteConnection(App.databasePass)) {
+                connection.CreateTable<Customer>();
+                connection.Delete(item);
+
+                ReadDatabase();
+            }
         }
     }
 }
