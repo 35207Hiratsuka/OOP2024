@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CustomerApp"
         mc:Ignorable="d"
-        Title="MainWindow" Height="300" Width="300">
+        Title="MainWindow" Height="300" Width="500">
     <Grid>
         <StackPanel Margin="10">
             <Grid>
@@ -13,9 +13,12 @@
                     <RowDefinition/>
                     <RowDefinition/>
                     <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="2*"/>
+                    <ColumnDefinition Width="8*"/>
                     <ColumnDefinition Width="8*"/>
                 </Grid.ColumnDefinitions>
                 <TextBlock Text="名前" Grid.Row="0" Grid.Column="0"/>
@@ -23,7 +26,12 @@
                 <TextBlock Text="電話番号" Grid.Row="1" Grid.Column="0"/>
                 <TextBox x:Name="PhoneTextBox" Grid.Row="1" Grid.Column="1"/>
                 <TextBlock Text="住所" Grid.Row="2" Grid.Column="0"/>
-                <TextBox x:Name="AddressTextBox" Grid.Row="2" Grid.Column="1"/>
+                <TextBox x:Name="AddressTextBox" Grid.Row="2"  Grid.Column="1"/>
+
+                <TextBlock Text="写真" Grid.Row="3" Grid.Column="0"/>
+                <Button Content="Picture Select" x:Name="PictureSelectBt"  Grid.Row="3"  Grid.Column="1" Click="PictureSelectBt_Click"/>
+                <Button Content="Picture Delete" x:Name="PictureDeleteBt"  Grid.Row="4"  Grid.Column="1" Click="PictureDeleteBt_Click"/>
+                <Image x:Name="PictureBox" Grid.Row="0" Grid.Column="4" Grid.RowSpan="5" Margin="2" />
 
             </Grid>
 

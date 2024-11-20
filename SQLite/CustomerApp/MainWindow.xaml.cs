@@ -14,6 +14,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.ComponentModel;
+using System.Drawing;
 
 namespace CustomerApp {
     /// <summary>
@@ -32,6 +34,7 @@ namespace CustomerApp {
                 Name = NameTextBox.Text,
                 Phone = PhoneTextBox.Text,
                 Address = AddressTextBox.Text,
+                Picture = PictureBox,
             };
 
             using(var connection = new SQLiteConnection(App.databasePass)) {
@@ -51,6 +54,7 @@ namespace CustomerApp {
             item.Name = NameTextBox.Text;
             item.Phone = PhoneTextBox.Text;
             item.Address = AddressTextBox.Text;
+            item.Picture = PictureBox;
 
             using(var connection = new SQLiteConnection(App.databasePass)) {
                 connection.CreateTable<Customer>();
@@ -67,6 +71,11 @@ namespace CustomerApp {
                 _customers = connection.Table<Customer>().ToList();
 
                 CustomerListView.ItemsSource = _customers;
+
+                NameTextBox.Clear();
+                PhoneTextBox.Clear();
+                AddressTextBox.Clear();
+                PictureBox.Source = null;
             }
         }
 
@@ -92,11 +101,20 @@ namespace CustomerApp {
         }
 
         private void CustomerListView_SelectionChanged(object sender, SelectionChangedEventArgs e) {
-            if(CustomerListView.SelectedIndex >= 0 && CustomerListView.SelectedIndex < _customers.Count) {
+            if(CustomerListView.SelectedIndex >= 0) {
                 NameTextBox.Text = _customers[CustomerListView.SelectedIndex].Name;
                 PhoneTextBox.Text = _customers[CustomerListView.SelectedIndex].Phone;
                 AddressTextBox.Text = _customers[CustomerListView.SelectedIndex].Address;
+                PictureBox.Source = _customers[CustomerListView.SelectedIndex].Picture.Source;
             }
+        }
+
+        private void PictureSelectBt_Click(object sender, RoutedEventArgs e) {
+             //PictureBox.Source = Image.FromFile
+        }
+
+        private void PictureDeleteBt_Click(object sender, RoutedEventArgs e) {
+            PictureBox.Source = null;
         }
     }
 }

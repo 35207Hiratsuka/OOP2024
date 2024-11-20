@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using SQLitePCL;
 using SQLite;
+using System.Windows.Controls;
 
 namespace CustomerApp.Objects {
     public class Customer {
@@ -32,8 +33,15 @@ namespace CustomerApp.Objects {
         /// </summary>
         public string Address { get; set; }
 
+        /// <summary>
+        /// 写真
+        /// </summary>
+        public Image Picture {
+            get; set;
+        }
+
         public override string ToString() {
-            return $"{Id}   {Name}   {Phone}   {Address}";
+            return $"{Id}   {Name}   {Phone}   {Address}   {Picture}";
         }
     }
 }
