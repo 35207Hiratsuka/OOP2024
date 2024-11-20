@@ -38,8 +38,6 @@ namespace CustomerApp {
                 connection.CreateTable<Customer>();
                 connection.Insert(customer);
                 ReadDatabase();
-
-
             }
         }
 
@@ -50,17 +48,18 @@ namespace CustomerApp {
                 return;
             }
 
-            item.Name = NameTextBox.Text;
-            item.Phone = PhoneTextBox.Text;
-            item.Address = AddressTextBox.Text;
+            var nCustomer = new Customer() {
+                Name = NameTextBox.Text,
+                Phone = PhoneTextBox.Text,
+                Address = AddressTextBox.Text,
+            };
 
             using(var connection = new SQLiteConnection(App.databasePass)) {
                 connection.CreateTable<Customer>();
-                connection.Update(item);
-            }
+                connection.Update(nCustomer);
 
                 ReadDatabase();
-            
+            }
         }
 
         private void ReadDatabase() {
@@ -69,10 +68,6 @@ namespace CustomerApp {
                 _customers = connection.Table<Customer>().ToList();
 
                 CustomerListView.ItemsSource = _customers;
-
-                NameTextBox.Clear();
-                PhoneTextBox.Clear();
-                AddressTextBox.Clear();
             }
         }
 
@@ -94,17 +89,13 @@ namespace CustomerApp {
                 connection.Delete(item);
 
                 ReadDatabase();
-
             }
         }
 
         private void CustomerListView_SelectionChanged(object sender, SelectionChangedEventArgs e) {
-            if(CustomerListView.SelectedIndex >= 0 && CustomerListView.SelectedIndex < _customers.Count) {
-            
-                NameTextBox.Text = _customers[CustomerListView.SelectedIndex].Name;
-                PhoneTextBox.Text = _customers[CustomerListView.SelectedIndex].Phone;
-                AddressTextBox.Text = _customers[CustomerListView.SelectedIndex].Address;
-            }
+            NameTextBox.Text = _customers[CustomerListView.SelectedIndex].Name;
+            PhoneTextBox.Text = _customers[CustomerListView.SelectedIndex].Phone;
+            AddressTextBox.Text = _customers[CustomerListView.SelectedIndex].Address;
         }
     }
 }
