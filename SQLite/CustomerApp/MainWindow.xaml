@@ -43,10 +43,17 @@
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <StackPanel>
-                            <TextBlock Text="{Binding Id}"/>
-                            <TextBlock Text="{Binding Name}" FontSize="20"/>
-                            <TextBlock Text="{Binding Phone}" Foreground="Blue"/>
-                            <TextBlock Text="{Binding Address}" Foreground="Green"/>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="5*"/>
+                                    <ColumnDefinition Width="3*"/>
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Text="{Binding Id}" Grid.Column="0"/>
+                            <TextBlock Text="{Binding Name}" FontSize="20" Grid.Column="0"/>
+                            <TextBlock Text="{Binding Phone}" Foreground="Blue" Grid.Column="0"/>
+                            <TextBlock Text="{Binding Address}" Foreground="Green" Grid.Column="0"/>
+                            <Image Source="{Binding Picture}" Grid.Column="1"/>
+                        </Grid>
                         </StackPanel>
                     </DataTemplate>
                 </ListView.ItemTemplate>

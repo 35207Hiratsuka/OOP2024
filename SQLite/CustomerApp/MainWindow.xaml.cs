@@ -16,7 +16,9 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.ComponentModel;
 using System.Drawing;
-
+using System.IO;
+using Microsoft.Win32;
+using static System.Net.WebRequestMethods;
 namespace CustomerApp {
     /// <summary>
     /// MainWindow.xaml の相互作用ロジック
@@ -110,7 +112,8 @@ namespace CustomerApp {
         }
 
         private void PictureSelectBt_Click(object sender, RoutedEventArgs e) {
-             //PictureBox.Source = Image.FromFile
+           
+
         }
 
         private void PictureDeleteBt_Click(object sender, RoutedEventArgs e) {
