@@ -36,7 +36,7 @@ namespace CustomerApp.Objects {
         /// <summary>
         /// 写真
         /// </summary>
-        public Image Picture {
+        public byte[] Picture {
             get; set;
         }
 

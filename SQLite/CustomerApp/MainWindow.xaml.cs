@@ -19,6 +19,7 @@ using System.Drawing;
 using System.IO;
 using Microsoft.Win32;
 using static System.Net.WebRequestMethods;
+using System.Globalization;
 namespace CustomerApp {
     /// <summary>
     /// MainWindow.xaml の相互作用ロジック
@@ -30,15 +31,32 @@ namespace CustomerApp {
             InitializeComponent();
             ReadDatabase();
         }
-        
-        private void SaveButton_Click(object sender, RoutedEventArgs e) {
-            var customer = new Customer() {
-                Name = NameTextBox.Text,
-                Phone = PhoneTextBox.Text,
-                Address = AddressTextBox.Text,
-                Picture = PictureBox,
-            };
 
+        private byte[] ImageToByteArray(BitmapImage bitmapImage) {
+            using(MemoryStream ms = new MemoryStream()) {
+                JpegBitmapEncoder encoder = new JpegBitmapEncoder();
+                encoder.Frames.Add(BitmapFrame.Create(bitmapImage));
+                encoder.Save(ms);
+                return ms.ToArray();
+            }
+        }
+        private BitmapImage ByteArrayToImage(byte[] byteArray) {
+            using(MemoryStream ms = new MemoryStream(byteArray)) {
+                BitmapImage bitmap = new BitmapImage();
+                bitmap.BeginInit();
+                bitmap.StreamSource = ms;
+                bitmap.CacheOption = BitmapCacheOption.OnLoad;
+                bitmap.EndInit();
+                return bitmap;
+            }
+        }
+
+            private void RegistButton_Click(object sender, RoutedEventArgs e) {
+            if(NameTextBox.Text == null) {
+                MessageBox.Show("名前が入力されていません");
+                return;
+            }
+            var customer = new Customer() { Name = NameTextBox.Text, Phone = PhoneTextBox.Text, Address = AddressTextBox.Text, Picture = PicturePreviewBox.Source != null ? ImageToByteArray((BitmapImage)PicturePreviewBox.Source) : null, };
             using(var connection = new SQLiteConnection(App.databasePass)) {
                 connection.CreateTable<Customer>();
                 connection.Insert(customer);
@@ -51,23 +69,23 @@ namespace CustomerApp {
             if(item == null) {
                 MessageBox.Show("編集する行を選択してください");
                 return;
+            }else if(NameTextBox.Text == null) {
+                MessageBox.Show("名前が入力されていません");
+                return;
             }
 
             item.Name = NameTextBox.Text;
             item.Phone = PhoneTextBox.Text;
             item.Address = AddressTextBox.Text;
-            item.Picture = PictureBox;
-
+            item.Picture = PicturePreviewBox.Source != null ? ImageToByteArray((BitmapImage)PicturePreviewBox.Source) : null;
             using(var connection = new SQLiteConnection(App.databasePass)) {
                 connection.CreateTable<Customer>();
                 connection.Update(item);
             }
-
             ReadDatabase();
-
         }
 
-        private void ReadDatabase() {
+            private void ReadDatabase() {
             using(var connection = new SQLiteConnection(App.databasePass)) {
                 connection.CreateTable<Customer>();
                 _customers = connection.Table<Customer>().ToList();
@@ -77,7 +95,7 @@ namespace CustomerApp {
                 NameTextBox.Clear();
                 PhoneTextBox.Clear();
                 AddressTextBox.Clear();
-                PictureBox.Source = null;
+                PicturePreviewBox.Source = null;
             }
         }
 
@@ -103,21 +121,34 @@ namespace CustomerApp {
         }
 
         private void CustomerListView_SelectionChanged(object sender, SelectionChangedEventArgs e) {
-            if(CustomerListView.SelectedIndex >= 0) {
-                NameTextBox.Text = _customers[CustomerListView.SelectedIndex].Name;
-                PhoneTextBox.Text = _customers[CustomerListView.SelectedIndex].Phone;
-                AddressTextBox.Text = _customers[CustomerListView.SelectedIndex].Address;
-                PictureBox.Source = _customers[CustomerListView.SelectedIndex].Picture.Source;
+            var selectedCustomer = CustomerListView.SelectedItem as Customer;
+            if(selectedCustomer != null) {
+                NameTextBox.Text = selectedCustomer.Name;
+                PhoneTextBox.Text = selectedCustomer.Phone;
+                AddressTextBox.Text = selectedCustomer.Address;
+                if(selectedCustomer.Picture != null) {
+                    PicturePreviewBox.Source = ByteArrayToImage(selectedCustomer.Picture);
+                } else {
+                    PicturePreviewBox.Source = null;
+                }
             }
         }
 
-        private void PictureSelectBt_Click(object sender, RoutedEventArgs e) {
-           
-
+            private void PictureSelectBt_Click(object sender, RoutedEventArgs e) {
+            OpenFileDialog openFileDialog = new OpenFileDialog {
+                Filter = "Image files (*.jpg;*.jpeg;*.png)|*.jpg;*.jpeg;*.png|All files (*.*)|*.*", Title = "画像を選択してください" };
+            if(openFileDialog.ShowDialog() == true) {
+                string selectedFileName = openFileDialog.FileName;
+                BitmapImage bitmap = new BitmapImage();
+                bitmap.BeginInit();
+                bitmap.UriSource = new Uri(selectedFileName);
+                bitmap.EndInit();
+                PicturePreviewBox.Source = bitmap;
+            }
         }
 
         private void PictureDeleteBt_Click(object sender, RoutedEventArgs e) {
-            PictureBox.Source = null;
+            PicturePreviewBox.Source = null;
         }
     }
 }
